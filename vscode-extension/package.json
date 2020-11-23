@@ -1,0 +1,29 @@
+{
+	"name": "vsc-extension-dirt",
+	"version": "0.2.0",
+	"description": "VS Code Extension Dirt",
+	"publisher": "sarincasm",
+	"engines": {
+		"vscode": "^1.22.0"
+	},
+	"activationEvents": [
+		"onCommand:extension.dirtyHands"
+	],
+	"main": "extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.dirtyHands",
+				"title": "Dirty Hands"
+			}
+		]
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"vscode"
+	],
+	"author": "sarincasm <eelsweb@gmail.com> (http://sarincasm.com/)",
+	"license": "UNLICENSED"
+}
