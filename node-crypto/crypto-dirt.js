@@ -46,12 +46,16 @@ function createHashUsage() {
 	console.log(saltString, salt, salt.length)
 }
 
+function generateSalt() {
+	const seed = crypto.randomBytes(32).toString('hex')
+	const hash = crypto.createHash('sha256')
+	hash.update(seed)
+	return hash.digest('hex')
+}
+
 function pbkdf2Usage() {
 	const userInputPassword = 'possiblyWeak'
-	const saltString = crypto.randomBytes(32).toString('hex')
-	const hash = crypto.createHash('sha256')
-	hash.update(saltString)
-	const salt = hash.digest('hex')
+	const salt = generateSalt()
 	const iterations = 100000
 	const derivedKeyBytes = 64
 	const derivedKeyBuffer = crypto.pbkdf2Sync(
@@ -64,4 +68,35 @@ function pbkdf2Usage() {
 	const derivedKey = derivedKeyBuffer.toString('hex')
 	console.log(derivedKeyBuffer, derivedKeyBuffer.byteLength)
 	console.log(derivedKey, derivedKey.length)
+}
+
+/**
+ * https://github.com/ranisalt/node-argon2/wiki/Options
+ */
+async function argon2Usage() {
+	const argon2 = require('argon2')
+
+	const userInputPassword = 'possiblyWeak'
+	const salt = generateSalt()
+	const argon2Result = await argon2.hash(userInputPassword, {
+		type: argon2.argon2id,
+		salt: Buffer.from(salt, 'hex'),
+		timeCost: 5,
+		memoryCost: 65536,
+		hashLength: 64,
+	})
+	console.log(argon2Result)
+	// $argon2id$v=19$m=65536,t=5,p=1$y7SmQAY3jsJhhA05q2zHYEjz2tFuGbfbUI+xG6RZTFE$U0XUfdIYYr8RcW1sD6evLuCbijdu5OkuB5kNsghHzcFqx0VG9a3E+lvgO1a4Qb+iV9iWXCszXQkb517fkrG0iQ
+
+	const [
+		,
+		variant,
+		version,
+		memoryIterationsParallelism,
+		salt64,
+		key64,
+	] = argon2Result.split('$')
+	const derivedKey = Buffer.from(key64, 'base64').toString('hex')
+	console.log(variant, version, memoryIterationsParallelism, salt64, key64)
+	console.log(derivedKey)
 }
