@@ -4,4 +4,5 @@ module.exports = {
 		title: 'Threaten Me',
 	},
 	plugins: ['gatsby-plugin-react-helmet'],
+	pathPrefix: '/twilio-sss',
 }

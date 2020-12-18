@@ -4,6 +4,12 @@
 
 Get a threatening phone call from Liam Neeson. Uses Twilio Voice and Twilio Functions.
 
+Watch a quick video demo:
+
+[![Video Demo](threaten-me-gatsby/VideoDemo.jpg)](https://vimeo.com/493899741 'Video Demo - Click to Watch!')
+
+A deployed showcase can be [accessed here](https://showcase.g6g.me/twilio-sss/) (Note: This uses a trial account, and will therefore only work with verified phone numbers).
+
 # Setup
 
 ## Backend using Twilio Functions
@@ -49,3 +55,4 @@ The generated `public` folder can be hosted as a static site
 -  https://www.twilio.com/docs/voice/quickstart/node
 -  https://www.twilio.com/docs/runtime/functions/create-service
 -  https://www.twilio.com/docs/usage/tutorials/how-to-use-your-free-trial-account
+-  https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/
