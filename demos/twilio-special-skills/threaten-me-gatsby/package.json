@@ -1,0 +1,25 @@
+{
+	"name": "threaten-me",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Threaten Me",
+	"author": "sarincasm",
+	"keywords": [
+		"gatsby",
+		"twilio"
+	],
+	"scripts": {
+		"start": "gatsby develop",
+		"build": "gatsby build",
+		"serve": "gatsby serve",
+		"clean": "gatsby clean"
+	},
+	"license": "UNLICENSED",
+	"dependencies": {
+		"gatsby": "^2.26.1",
+		"gatsby-plugin-react-helmet": "^3.7.0",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-helmet": "^6.1.0"
+	}
+}
