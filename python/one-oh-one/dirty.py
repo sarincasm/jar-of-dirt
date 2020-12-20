@@ -1,0 +1,1 @@
+print('Wash Your Hands')
