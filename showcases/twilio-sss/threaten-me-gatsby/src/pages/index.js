@@ -69,7 +69,8 @@ const buttonStyle = {
 
 const docLink = {
 	text: 'View Source Code',
-	url: 'https://github.com/sarincasm/jar-of-dirt/tree/main/demos/twilio-sss',
+	url:
+		'https://github.com/sarincasm/jar-of-dirt/tree/main/showcases/twilio-sss',
 	color: '#8954A8',
 }
 

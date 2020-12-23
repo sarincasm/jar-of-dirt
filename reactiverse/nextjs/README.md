@@ -2,7 +2,7 @@
 
 # Next.JS
 
-A simple site with (Next.js)[https://nextjs.org/]
+A simple site with [Next.js](https://nextjs.org/)
 
 ## Super Quick Start
 
@@ -27,7 +27,7 @@ Add Scripts to `package.json`
 	}
 ```
 
-Run!!
+Run
 
 ```
 npm run dev
