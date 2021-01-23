@@ -1,0 +1,21 @@
+
+
+*** Summary for Model  ALEXNET ***
+            N Images:  40
+        N Dog Images:  30
+    N Not-Dog Images:  10
+         pct_matches:  75.0
+    pct_correct_dogs: 100.0
+   pct_correct_breed:  80.0
+ pct_correct_notdogs: 100.0
+
+Incorrect Dog Breed:
+True: beagle                       Classifier: english foxhound              
+True: beagle                       Classifier: walker hound, walker foxhound 
+True: boston terrier               Classifier: basenji                       
+True: golden retriever             Classifier: tibetan mastiff               
+True: golden retriever             Classifier: afghan hound, afghan          
+True: great pyrenees               Classifier: kuvasz                        
+
+
+Running Time:  0:0:1.29

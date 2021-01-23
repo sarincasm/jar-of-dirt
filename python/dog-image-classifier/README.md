@@ -4,7 +4,7 @@
 
 Using Python to classify images of dogs & their breeds.
 
-Code based on [this lab](https://github.com/udacity/AIPND/tree/master/intropylab-classifying-images) from AI Programming with Python (Udacity).
+Code based on [this lab](https://github.com/udacity/AIPND/tree/master/intropylab-classifying-images).
 
 # Setup
 
@@ -12,13 +12,19 @@ Code based on [this lab](https://github.com/udacity/AIPND/tree/master/intropylab
 -  Install packages
 -  Download data from [here](https://go.g6g.me/pdoimclpi)
 
-Run
+# Run
 
 ```
 python check_images.py
 ```
 
 Run with --help to see what arguments can be passed.
+
+Batch file to run the classifier for all CNN architectures. This will write results to the `results` directory.
+
+```
+run_all_models.bat
+```
 
 # Useful Links
 

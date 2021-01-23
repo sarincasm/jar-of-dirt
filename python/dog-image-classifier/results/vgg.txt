@@ -1,0 +1,17 @@
+
+
+*** Summary for Model  VGG ***
+            N Images:  40
+        N Dog Images:  30
+    N Not-Dog Images:  10
+         pct_matches:  87.5
+    pct_correct_dogs: 100.0
+   pct_correct_breed:  93.3
+ pct_correct_notdogs: 100.0
+
+Incorrect Dog Breed:
+True: beagle                       Classifier: walker hound, walker foxhound 
+True: great pyrenees               Classifier: kuvasz                        
+
+
+Running Time:  0:0:8.58
