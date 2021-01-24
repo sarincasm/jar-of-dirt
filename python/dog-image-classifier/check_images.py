@@ -38,11 +38,11 @@ def get_input_args():
     """
     parser = argparse.ArgumentParser(description='add description here')
     parser.add_argument('--image-dir', type=str,
-                        help='path to images folder', default='pet_images')
+                        help='path to images folder', default='data/pet_images')
     parser.add_argument('--arch', type=str, default='vgg',
                         choices=['vgg', 'resnet', 'alexnet'], help='CNN model architecture to use')
     parser.add_argument('--dogfile', type=str,
-                        default='dognames.txt', help='dognames text file')
+                        default='data/dognames.txt', help='dognames text file')
     return vars(parser.parse_args()).values()
 
 
@@ -101,12 +101,12 @@ def classify_images(image_dir, true_labels, model):
         found = classifier_label.find(true_label)
         if found >= 0:
             if ((found == 0 and len(true_label) == len(classifier_label)) or
-                    (((found == 0) or (classifier_label[found - 1] == " ")) and
-                     ((found + len(true_label) == len(classifier_label)) or
-                              (classifier_label[found + len(true_label): found+len(true_label)+1] in
-                               (",", " "))
-                              )
-                     )
+                        (((found == 0) or (classifier_label[found - 1] == " ")) and
+                         ((found + len(true_label) == len(classifier_label)) or
+                          (classifier_label[found + len(true_label): found+len(true_label)+1] in
+                           (",", " "))
+                          )
+                         )
                     ):
                 if filename not in result:
                     result[filename] = [true_label, classifier_label, 1]
@@ -208,13 +208,14 @@ def calculate_stats(result):
 
 def print_result(result, stats, model, print_incorrect=False):
     print('\n\n*** Summary for Model ', model.upper(), '***')
-    print('%20s: %3d' % ('N Images', stats['n_images']))
-    print('%20s: %3d' % ('N Dog Images', stats['n_dogs_images']))
-    print('%20s: %3d' % ('N Not-Dog Images', stats['n_notdogs_images']))
+    print('{0:>20}:{1:4}'.format('N Images', stats['n_images']))
+    print('{0:>20}:{1:4}'.format('N Dog Images', stats['n_dogs_images']))
+    print('{0:>20}:{1:4}'.format(
+        'N Not-Dog Images', stats['n_notdogs_images']))
 
     for key in stats:
         if key[0] == 'p':
-            print('%20s: %5.1f' % (key, stats[key]))
+            print('{0:>20}: {1:5.1f}'.format(key, stats[key]))
 
     if print_incorrect:
         if (stats['n_correct_dogs'] + stats['n_correct_notdogs']) != stats['n_images']:
@@ -222,16 +223,16 @@ def print_result(result, stats, model, print_incorrect=False):
 
             for key in result:
                 if sum(result[key][3:]) == 1:
-                    print('True: %-26s   Classifier: %-30s' %
-                          (result[key][0], result[key][1]))
+                    print('True: {0:26} Classifier: {1:30}'.format(
+                        result[key][0], result[key][1]))
 
         if stats['n_correct_dogs'] != stats['n_correct_breed']:
-            print('\nIncorrect Dog Breed:')
+            print('\nIncorrect Dog Breeds:')
 
             for key in result:
                 if sum(result[key][3:]) == 2 and result[key][2] == 0:
-                    print('True: %-26s   Classifier: %-30s' %
-                          (result[key][0], result[key][1]))
+                    print('True: {0:26} Classifier: {1:30}'.format(
+                        result[key][0], result[key][1]))
 
 
 if __name__ == '__main__':

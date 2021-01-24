@@ -8,9 +8,14 @@ Code based on [this lab](https://github.com/udacity/AIPND/tree/master/intropylab
 
 # Setup
 
--  Checkout & clone the repo
--  Install packages
--  Download data from [here](https://go.g6g.me/pdoimclpi)
+-  Create env & install packages
+
+```
+conda env create -f environment.yaml
+conda activate pdoimcl
+```
+
+-  Download image data from [here](https://go.g6g.me/pdoimclpi)
 
 # Run
 
@@ -29,5 +34,6 @@ run_all_models.bat
 # Useful Links
 
 -  https://github.com/udacity/AIPND/tree/master/intropylab-classifying-images
--  https://github.com/udacity/AIPND-revision
 -  [Argparse Tutorial](https://docs.python.org/3/howto/argparse.html)
+-  [String Formatting](https://docs.python.org/3/library/string.html#format-string-syntax)
+-  https://github.com/udacity/AIPND-revision

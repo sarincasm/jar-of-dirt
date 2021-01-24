@@ -9,9 +9,9 @@
    pct_correct_breed:  93.3
  pct_correct_notdogs: 100.0
 
-Incorrect Dog Breed:
-True: beagle                       Classifier: walker hound, walker foxhound 
-True: great pyrenees               Classifier: kuvasz                        
+Incorrect Dog Breeds:
+True: beagle                     Classifier: walker hound, walker foxhound 
+True: great pyrenees             Classifier: kuvasz                        
 
 
-Running Time:  0:0:8.58
+Running Time:  0:0:8.8
