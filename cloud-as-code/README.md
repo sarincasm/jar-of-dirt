@@ -2,6 +2,6 @@
 
 # Cloud As Code
 
-Provision cloud resources & infrastructure using APIs/SDKs
+Provisioning cloud resources & infrastructure using APIs/SDKs
 
 -  [AWS](aws/)
