@@ -8,6 +8,7 @@ A repo to house learn-by-coding projects, example/boilerplate code, mini showcas
 
 -  [Cloud as Code](cloud-as-code/)
 -  [Docker](docker/)
+-  [Golang](golang/)
 -  [Node-Land](node-land/)
 -  [Python](python/)
 -  [React-iverse](reactiverse/)
