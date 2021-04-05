@@ -11,3 +11,4 @@ A repo to house learn-by-coding projects, example/boilerplate code, mini showcas
 -  [Python](python/)
 -  [React-iverse](reactiverse/)
 -  [Showcases](showcases/)
+-  [Typescript](typescript/)
