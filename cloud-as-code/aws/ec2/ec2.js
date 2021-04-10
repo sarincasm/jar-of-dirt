@@ -5,12 +5,21 @@ require('dotenv').config()
 const fs = require('fs')
 
 const {
-	EC2Client,
 	CreateKeyPairCommand,
 	CreateSecurityGroupCommand,
 	AuthorizeSecurityGroupIngressCommand,
+	DescribeSecurityGroupsCommand,
+
+	EC2Client,
 	RunInstancesCommand,
 	TerminateInstancesCommand,
+	DescribeInstancesCommand,
+
+	CreateImageCommand,
+
+	CreateVolumeCommand,
+	CreateSnapshotCommand,
+	DeleteVolumeCommand,
 } = require('@aws-sdk/client-ec2')
 
 const client = new EC2Client({region: 'us-east-1'})
@@ -29,29 +38,45 @@ async function createKeyPair() {
 	}
 }
 
+async function listSecurityGroups() {
+	const command = new DescribeSecurityGroupsCommand({})
+	try {
+		const result = await client.send(command)
+		console.log(result)
+		const {SecurityGroups} = result
+		return SecurityGroups.map((securityGroup) => securityGroup.GroupId)
+	} catch (error) {
+		console.log(error)
+	}
+}
+
 async function configureSecurityGroup() {
+	// by default all Denied
+	// open specific
+	// SGs are stateful
+
 	// allow SSH for an IP
-	const createParams = {
-		Description: 'Dirty SG',
-		GroupName: 'Dirty-SG-1',
-		VpcId: 'vpc-xxxxxxxx',
-	}
-	const ingressParams = {
-		// GroupId,
-		IpPermissions: [
-			{
-				FromPort: 22,
-				IpProtocol: 'tcp',
-				IpRanges: [
-					{
-						CidrIp: 'XX.XX.XX.XX/32',
-						Description: 'SSH access',
-					},
-				],
-				ToPort: 22,
-			},
-		],
-	}
+	// const createParams = {
+	// 	Description: 'Dirty SG',
+	// 	GroupName: 'Dirty-SG-1',
+	// 	VpcId: 'vpc-xxxxxxxx',
+	// }
+	// const ingressParams = {
+	// 	// GroupId,
+	// 	IpPermissions: [
+	// 		{
+	// 			FromPort: 22,
+	// 			IpProtocol: 'tcp',
+	// 			IpRanges: [
+	// 				{
+	// 					CidrIp: 'XX.XX.XX.XX/32',
+	// 					Description: 'SSH access',
+	// 				},
+	// 			],
+	// 			ToPort: 22,
+	// 		},
+	// 	],
+	// }
 
 	// enable SSH via EC2_INSTANCE_CONNECT
 	const createParams = {
@@ -112,11 +137,86 @@ async function runInstance() {
 	}
 }
 
+async function describeInstance() {
+	const params = {
+		InstanceIds: ['i-'],
+	}
+	const command = new DescribeInstancesCommand(params)
+	try {
+		const result = await client.send(command)
+		console.log(result.Reservations[0].Instances[0])
+		return result.Reservations[0].Instances[0]
+	} catch (error) {
+		console.log(error)
+	}
+}
+
 async function terminateInstance() {
 	const params = {
 		InstanceIds: ['i-xxxxxxxxxxxxxxxxx'],
 	}
 	const command = new TerminateInstancesCommand(params)
+	try {
+		const result = await client.send(command)
+		console.log(result)
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+async function createAMI() {
+	const params = {
+		InstanceId: 'i-',
+		Name: 'Dirty-AMI',
+	}
+	const command = new CreateImageCommand(params)
+	try {
+		const result = await client.send(command)
+		console.log(result)
+		return result.ImageId
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+async function createEBSVolume() {
+	const params = {
+		AvailabilityZone: 'us-east-1a',
+		Size: 4,
+		VolumeType: 'gp3',
+		SnapshotId: 'snap-',
+	}
+	const command = new CreateVolumeCommand(params)
+	try {
+		const result = await client.send(command)
+		const {VolumeId} = result
+		console.log(result)
+		return {VolumeId}
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+async function createSnapshot() {
+	const params = {
+		VolumeId: 'vol-',
+	}
+	const command = new CreateSnapshotCommand(params)
+	try {
+		const result = await client.send(command)
+		const {SnapshotId} = result
+		console.log(result)
+		return {SnapshotId}
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+async function deleteEBSVolume() {
+	const params = {
+		VolumeId: 'vol-',
+	}
+	const command = new DeleteVolumeCommand(params)
 	try {
 		const result = await client.send(command)
 		console.log(result)
