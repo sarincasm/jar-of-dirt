@@ -10,6 +10,8 @@ const {
 	AuthorizeSecurityGroupIngressCommand,
 	DescribeSecurityGroupsCommand,
 
+	AssociateIamInstanceProfileCommand,
+
 	EC2Client,
 	RunInstancesCommand,
 	TerminateInstancesCommand,
@@ -119,6 +121,22 @@ async function configureSecurityGroup() {
 	}
 }
 
+async function associateInstanceProfile() {
+	const params = {
+		InstanceId: '',
+		IamInstanceProfile: {
+			Name: 'Dirty-Instance-Profile-01',
+		},
+	}
+	const command = new AssociateIamInstanceProfileCommand(params)
+	try {
+		const result = await client.send(command)
+		console.log(result)
+	} catch (error) {
+		console.log(error)
+	}
+}
+
 async function runInstance() {
 	const params = {
 		ImageId: 'ami-047a51fa27710816e',
@@ -127,6 +145,9 @@ async function runInstance() {
 		MaxCount: 1,
 		KeyName: 'dirty-key-1',
 		SecurityGroupIds: ['sg-xxxxxxxxxxxxxxxxx', 'sg-xxxxxxxxxxxxxxxxx'],
+		IamInstanceProfile: {
+			Name: 'Dirty-Instance-Profile-01',
+		},
 	}
 	const command = new RunInstancesCommand(params)
 	try {
