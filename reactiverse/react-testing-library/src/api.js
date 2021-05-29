@@ -8,6 +8,17 @@ const sleep = (time) =>
 		setTimeout(resolve, time)
 	})
 
+const greetings = ['Hello', 'Hi', 'Hey there', `What's up`, 'Howdy', `G'day`]
+
+async function fetchRandomGreeting() {
+	await sleep(1000)
+	return greetings[Math.floor(Math.random() * greetings.length)]
+}
+
+async function loadGreeting(subject) {
+	return {data: {greeting: `${await fetchRandomGreeting()} ${subject}`}}
+}
+
 // a fire-and-forget function to report errors
 // for componentDidCatch
 async function reportError() {
@@ -15,4 +26,4 @@ async function reportError() {
 	return {success: true}
 }
 
-export {reportError}
+export {loadGreeting, reportError}
