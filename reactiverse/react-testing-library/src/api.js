@@ -26,4 +26,9 @@ async function reportError() {
 	return {success: true}
 }
 
-export {loadGreeting, reportError}
+async function savePost(postData) {
+	await sleep(1000)
+	return {data: {post: postData}}
+}
+
+export {loadGreeting, reportError, savePost}
