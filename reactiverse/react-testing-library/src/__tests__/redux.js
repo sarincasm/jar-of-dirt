@@ -3,7 +3,7 @@
 import React from 'react'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
-import {render as rtlRender} from '@testing-library/react'
+import {render as rtlRender, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import {Counter} from '../redux-counter'
@@ -30,13 +30,15 @@ function render(
 }
 
 test('can render with redux with defaults', () => {
-	const {getByLabelText, getByText} = render(<Counter />)
+	const {getByLabelText, getByText} = screen
+	render(<Counter />)
 	userEvent.click(getByText('+'))
 	expect(getByLabelText('count')).toHaveTextContent('1')
 })
 
 test('can decrement the value', () => {
-	const {getByLabelText, getByText} = render(<Counter />, {
+	const {getByLabelText, getByText} = screen
+	render(<Counter />, {
 		initialState: {count: 3},
 	})
 	userEvent.click(getByText('-'))

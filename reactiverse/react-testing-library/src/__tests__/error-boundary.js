@@ -1,7 +1,8 @@
 /** @format */
 
 import React from 'react'
-import {render, fireEvent} from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import {reportError} from '../api'
 import {ErrorBoundary} from '../error-boundary'
 
@@ -26,10 +27,8 @@ function Bomb({shouldThrow}) {
 
 test('calls reportError and renders that there was a problem', async () => {
 	reportError.mockResolvedValueOnce({success: true})
-	const {rerender, getByText, getByRole, queryByRole, queryByText} = render(
-		<Bomb />,
-		{wrapper: ErrorBoundary}
-	)
+	const {rerender} = render(<Bomb />, {wrapper: ErrorBoundary})
+	const {getByText, getByRole, queryByRole, queryByText} = screen
 
 	rerender(<Bomb shouldThrow={true} />)
 
@@ -49,7 +48,7 @@ test('calls reportError and renders that there was a problem', async () => {
 
 	rerender(<Bomb />)
 
-	fireEvent.click(getByText('Try again?'))
+	userEvent.click(getByText('Try again?'))
 
 	expect(reportError).not.toHaveBeenCalled()
 	expect(console.error).not.toHaveBeenCalled()

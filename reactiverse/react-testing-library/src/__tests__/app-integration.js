@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import {render} from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {submitForm} from '../api'
 import App from '../app'
@@ -15,7 +15,8 @@ afterEach(() => {
 test('Can fill out a form across multiple pages', async () => {
 	submitForm.mockResolvedValueOnce({success: true})
 	const testData = {food: 'test food', drink: 'test drink'}
-	const {getByLabelText, getByText, findByText} = render(<App />)
+	render(<App />)
+	const {getByLabelText, getByText, findByText} = screen
 
 	userEvent.click(getByText(/fill.*form/i))
 
@@ -41,7 +42,8 @@ test('Can fill out a form across multiple pages', async () => {
 test('Can fill out a form across multiple pages - async', async () => {
 	submitForm.mockResolvedValueOnce({success: true})
 	const testData = {food: 'test food', drink: 'test drink'}
-	const {findByLabelText, findByText} = render(<App />)
+	render(<App />)
+	const {findByLabelText, findByText} = screen
 
 	userEvent.click(await findByText(/fill.*form/i))
 

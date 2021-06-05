@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import {render, waitFor} from '@testing-library/react'
+import {render, waitFor, screen} from '@testing-library/react'
 import {Redirect} from 'react-router'
 import userEvent from '@testing-library/user-event'
 import {build, fake, sequence} from 'test-data-bot'
@@ -35,10 +35,10 @@ function renderEditor() {
 	const utils = render(<Editor user={fakeUser} />)
 	const fakePost = postBuilder()
 
-	utils.getByLabelText(/title/i).value = fakePost.title
-	utils.getByLabelText(/content/i).value = fakePost.content
-	utils.getByLabelText(/tags/i).value = fakePost.tags.join(', ')
-	const submitButton = utils.getByText(/submit/i)
+	screen.getByLabelText(/title/i).value = fakePost.title
+	screen.getByLabelText(/content/i).value = fakePost.content
+	screen.getByLabelText(/tags/i).value = fakePost.tags.join(', ')
+	const submitButton = screen.getByText(/submit/i)
 	return {
 		...utils,
 		submitButton,
@@ -73,11 +73,11 @@ test('renders a form with title, content, tags, and a submit button', async () =
 test('renders an error message from the server', async () => {
 	const testError = 'test error'
 	savePost.mockRejectedValueOnce({data: {error: testError}})
-	const {submitButton, findByRole} = renderEditor()
+	const {submitButton} = renderEditor()
 
 	userEvent.click(submitButton)
 
-	const postError = await findByRole('alert')
+	const postError = await screen.findByRole('alert')
 	expect(postError).toHaveTextContent(testError)
 	expect(submitButton).not.toBeDisabled()
 })

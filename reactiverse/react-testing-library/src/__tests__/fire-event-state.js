@@ -1,12 +1,14 @@
 /** @format */
 
 import React from 'react'
-import {render, fireEvent} from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import {FavoriteNumber} from '../favorite-number'
 
 test('entering an invalid value shows an error message', () => {
-	const {getByLabelText, getByRole} = render(<FavoriteNumber />)
+	render(<FavoriteNumber />)
+	const {getByLabelText, getByRole} = screen
 	const input = getByLabelText('Favorite Number')
-	fireEvent.change(input, {target: {value: '10'}})
+	userEvent.type(input, '10')
 	expect(getByRole('alert')).toHaveTextContent('The number is invalid')
 })

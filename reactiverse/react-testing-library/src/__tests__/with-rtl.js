@@ -3,7 +3,7 @@
 import React from 'react'
 // import ReactDOM from 'react-dom'
 // import {getQueriesForElement} from '@testing-library/dom'
-import {render} from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 
 import {FavoriteNumber} from '../favorite-number'
 
@@ -16,7 +16,7 @@ import {FavoriteNumber} from '../favorite-number'
 // }
 
 test('renders a number input with a label "Favorite Number"', () => {
-	const {getByLabelText} = render(<FavoriteNumber />)
-	const input = getByLabelText('Favorite Number')
+	render(<FavoriteNumber />)
+	const input = screen.getByLabelText('Favorite Number')
 	expect(input).toHaveAttribute('type', 'number')
 })
