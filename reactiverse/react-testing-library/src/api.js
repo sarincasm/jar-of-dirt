@@ -31,4 +31,9 @@ async function savePost(postData) {
 	return {data: {post: postData}}
 }
 
-export {loadGreeting, reportError, savePost}
+async function submitForm() {
+	await sleep(1000)
+	return {success: true}
+}
+
+export {loadGreeting, reportError, savePost, submitForm}
