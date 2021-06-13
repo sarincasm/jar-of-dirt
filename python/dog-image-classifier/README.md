@@ -15,7 +15,7 @@ conda env create -f environment.yaml
 conda activate pdoimcl
 ```
 
--  Download image data from [here](https://go.g6g.me/pdoimclpi)
+-  Download image data from [here](https://g.g6g.me/pdoimclpi)
 
 # Run
 
