@@ -1,10 +1,6 @@
 /** @format */
 
-let MinIncome, MaxIncome
-let MinPopulation, MaxPopulation
-let MinLifeExp = 0,
-	MaxLifeExp
-
+window.document.title = 'D3 - GDP & Life Expectancy 1800-2014'
 const margin = {
 	top: 25,
 	right: 5,
@@ -19,10 +15,25 @@ const height = fullHeight - margin.top - margin.bottom
 let g
 let xScale, yScale, areaScale, continentColorMap
 let timeLabelG
+
+let MinIncome, MaxIncome
+let MinPopulation, MaxPopulation
+let MinLifeExp = 0,
+	MaxLifeExp
+
+let interval
+const delay = 200
+let playState = true
+
+let cleanData
+let yearDisplayed = 0
+
+let continentFilter = 'all'
+
 ;(async () => {
 	// https://filedn.eu/lkPoWhfsVfnBsjKrkWb0mHm/eels/dirt-data/gapminder-rosling-data.json
 	const data = await d3.json('large-data/gapminder-rosling-data.json')
-	const cleanData = data.map((yearData) => {
+	cleanData = data.map((yearData) => {
 		const filtered = yearData.countries.filter(
 			(countryData) => countryData.income && countryData.life_exp
 		)
@@ -37,6 +48,8 @@ let timeLabelG
 		}
 	})
 
+	const continents = getContinents(cleanData)
+
 	const incomeMinMax = getMinMax(cleanData, 'income')
 	MinIncome = incomeMinMax.min
 	MaxIncome = incomeMinMax.max
@@ -48,18 +61,112 @@ let timeLabelG
 
 	drawStructure({
 		timeLabel: data[0].year,
+		continents,
 	})
 	drawData(cleanData[0])
 
-	let yearDisplayed = 0
-	const years = cleanData.length
-	d3.interval(() => {
-		yearDisplayed = (yearDisplayed + 1) % years
-		drawData(cleanData[yearDisplayed])
-	}, 200)
+	interval = d3.interval(drawAtInterval, delay)
 })()
 
-function drawStructure({timeLabel}) {
+function drawAtInterval() {
+	const years = cleanData.length
+	if (playState) yearDisplayed = (yearDisplayed + 1) % years
+	drawData(cleanData[yearDisplayed])
+	document.getElementById('year-select').value = yearDisplayed
+}
+
+function setupPlayButton() {
+	const playButton = d3
+		.select('#chart')
+		.append('button')
+		.text('PAUSE')
+		.attr(
+			'style',
+			`position: relative; top: 60px; left: ${200}px; background: ${
+				d3.schemePastel1[0]
+			};  width: 100px; height: 50px; border: 0; border-radius: 5px; font-size: .8em; cursor: pointer;`
+		)
+
+	playButton.on('click', () => {
+		if (playState) {
+			interval.stop()
+			playButton.text('PLAY')
+		} else {
+			interval = d3.interval(drawAtInterval, delay)
+			playButton.text('PAUSE')
+		}
+		playState = !playState
+	})
+}
+function setupResetButton() {
+	const resetButton = d3
+		.select('#chart')
+		.append('button')
+		.text('RESET')
+		.attr(
+			'style',
+			`position: relative; top: 60px; left: ${205}px; background: ${
+				d3.schemePastel1[0]
+			};  width: 100px; height: 50px; border: 0; border-radius: 5px; font-size: .8em; cursor: pointer;`
+		)
+
+	resetButton.on('click', () => {
+		yearDisplayed = 0
+		drawAtInterval()
+	})
+}
+function setupFilterSelectBox(continents) {
+	const selectBox = d3
+		.select('#chart')
+		.append('select')
+		.attr('id', 'filter')
+		.attr(
+			'style',
+			`position: relative; top: 60px; left: ${210}px; background: ${
+				d3.schemePastel1[0]
+			};  width: 100px; height: 50px; border: 0; border-radius: 5px; font-size: .8em; cursor: pointer;`
+		)
+
+	selectBox.append('option').text('ALL').attr('value', 'all')
+	continents.forEach((continent) => {
+		selectBox
+			.append('option')
+			.text(continent.toUpperCase())
+			.attr('value', continent)
+	})
+
+	selectBox.on('change', (e) => {
+		continentFilter = e.target.value
+		drawAtInterval()
+	})
+}
+function setupYearSelect() {
+	const yearSelectBox = d3
+		.select('#chart')
+		.append('input')
+		.attr('id', 'year-select')
+		.attr('type', 'range')
+		.attr('min', 0)
+		.attr('max', cleanData.length - 1)
+		.attr(
+			'style',
+			`position: relative; top: 80px; left: ${215}px; background: ${
+				d3.schemePastel1[0]
+			}; width: 500px; height: 50px; border: 0; border-radius: 5px; font-size: .8em; cursor: pointer;`
+		)
+
+	yearSelectBox.on('change', (e) => {
+		yearDisplayed = Number(e.target.value)
+		drawAtInterval()
+	})
+}
+
+function drawStructure({timeLabel, continents}) {
+	setupPlayButton()
+	setupResetButton()
+	setupFilterSelectBox(continents)
+	setupYearSelect()
+
 	const svg = d3
 		.select('#chart')
 		.append('svg')
@@ -110,10 +217,59 @@ function drawStructure({timeLabel}) {
 	g.append('g').attr('transform', `translate(0, ${height})`).call(xAxis)
 	const yAxis = d3.axisLeft(yScale)
 	g.append('g').call(yAxis)
+
+	const legendGroup = g
+		.append('g')
+		.attr('transform', `translate(${width - 35}, 20)`)
+
+	continents.forEach((continent, index) => {
+		const legendRow = legendGroup
+			.append('g')
+			.attr('transform', `translate(0, ${(index - 1) * 30})`)
+
+		legendRow
+			.append('rect')
+			.attr('width', 20)
+			.attr('height', 20)
+			.attr('fill', continentColorMap(continent))
+
+		legendRow
+			.append('text')
+			.attr('x', -15)
+			.attr('y', 15)
+			.attr('text-anchor', 'end')
+			.style('text-transform', 'capitalize')
+			.text(continent)
+	})
 }
 
 function drawData({year, countries}) {
 	const transitionFunction = d3.transition().duration()
+
+	countries = countries.filter((countryData) => {
+		if (continentFilter === 'all') return true
+		return countryData.continent === continentFilter
+	})
+
+	const tip = d3
+		.tip()
+		.attr('class', 'd3-tip')
+		.html((_event, d) => {
+			let text = `<strong>Country:</strong> <span style='color:red;text-transform:capitalize'>${d.country}</span><br>`
+			text += `<strong>Continent:</strong> <span style='color:red;text-transform:capitalize'>${d.continent}</span><br>`
+			text += `<strong>Life Expectancy:</strong> <span style='color:red'>${d3.format(
+				'.2f'
+			)(d.life_exp)}</span><br>`
+			text += `<strong>GDP Per Capita:</strong> <span style='color:red'>${d3.format(
+				'$,.0f'
+			)(d.income)}</span><br>`
+			text += `<strong>Population:</strong> <span style='color:red'>${d3.format(
+				',.0f'
+			)(d.population)}</span><br>`
+			return text
+		})
+
+	g.call(tip)
 
 	const circles = g.selectAll('circle').data(countries, (d) => d.country)
 
@@ -123,6 +279,8 @@ function drawData({year, countries}) {
 		.enter()
 		.append('circle')
 		.attr('fill', (d) => continentColorMap(d.continent))
+		.on('mouseover', tip.show)
+		.on('mouseout', tip.hide)
 		.merge(circles)
 		.transition(transitionFunction)
 		.attr('cx', (d) => xScale(d.income))
@@ -144,4 +302,14 @@ function getMinMax(data, key) {
 		})
 	})
 	return {min, max}
+}
+
+function getContinents(data) {
+	const continents = new Set()
+	data.forEach((yearData) => {
+		yearData.countries.forEach((countryData) => {
+			continents.add(countryData.continent)
+		})
+	})
+	return Array.from(continents)
 }
