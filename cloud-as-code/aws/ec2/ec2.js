@@ -2,7 +2,10 @@
 
 require('dotenv').config()
 
-const fs = require('fs')
+const {
+	promises: {readFile},
+	writeFile,
+} = require('fs')
 
 const {
 	CreateKeyPairCommand,
@@ -33,7 +36,7 @@ async function createKeyPair() {
 	const command = new CreateKeyPairCommand(params)
 	try {
 		const result = await client.send(command)
-		fs.writeFile('./dirty-key.pem', result.KeyMaterial, () => {})
+		writeFile('./dirty-key.pem', result.KeyMaterial, () => {})
 		console.log(result)
 	} catch (error) {
 		console.log(error)
@@ -138,6 +141,8 @@ async function associateInstanceProfile() {
 }
 
 async function runInstance() {
+	const fileBuffer = await readFile(__dirname + '/bootstrap-script')
+	const UserData = fileBuffer.toString('base64')
 	const params = {
 		ImageId: 'ami-047a51fa27710816e',
 		InstanceType: 't2.micro',
@@ -148,6 +153,7 @@ async function runInstance() {
 		IamInstanceProfile: {
 			Name: 'Dirty-Instance-Profile-01',
 		},
+		UserData,
 	}
 	const command = new RunInstancesCommand(params)
 	try {
