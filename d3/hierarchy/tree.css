@@ -1,0 +1,22 @@
+/** @format */
+
+svg {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.link {
+	fill: none;
+	stroke: #555;
+	stroke-opacity: 0.4;
+	stroke-width: 1.5px;
+}
+
+.node circle {
+	fill: #999;
+}
+
+.node--internal circle {
+	fill: #555;
+}
