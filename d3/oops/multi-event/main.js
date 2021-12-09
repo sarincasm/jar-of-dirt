@@ -23,10 +23,16 @@ const values = [
 let selectedValue = values[0].value
 let selectedLabel = values[0].label
 let selectedCoin
+const parseTime = d3.timeParse('%d/%m/%Y')
+const timeRange = {
+	defaulMin: parseTime('12/5/2013'),
+	defaultMax: parseTime('31/10/2017'),
+	min: parseTime('12/5/2013'),
+	max: parseTime('31/10/2017'),
+}
 
 window.document.title = 'D3 - Multiple Coin Stats'
 ;(async () => {
-	const parseTime = d3.timeParse('%d/%m/%Y')
 	// https://filedn.eu/lkPoWhfsVfnBsjKrkWb0mHm/eels/dirt-data/
 	const rawData = await d3.json('./large-data/coins.json')
 	coins = Object.keys(rawData)
@@ -48,12 +54,14 @@ window.document.title = 'D3 - Multiple Coin Stats'
 		})
 	})
 	charts.line = new LineChart('#line-chart')
+	charts.brush = new Brush('#brush-chart')
 	charts.donut1 = new DonutChart('#donut-chart', '24h_vol')
 	charts.donut2 = new DonutChart('#donut-chart', 'market_cap')
 })()
 
 function refresh() {
 	charts.line.refresh()
+	charts.brush.refresh()
 	charts.donut1.refresh()
 	charts.donut2.refresh()
 }

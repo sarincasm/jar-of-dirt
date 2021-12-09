@@ -68,7 +68,9 @@ class LineChart {
 	refresh() {
 		const transitionFunction = d3.transition().duration()
 
-		const dataToDisplay = data[selectedCoin]
+		const dataToDisplay = data[selectedCoin].filter(
+			(d) => d.date >= timeRange.min && d.date <= timeRange.max
+		)
 		this.dataToDisplay = dataToDisplay
 
 		const {g, xScale, yScale, leftAxis, bottomAxis} = this
