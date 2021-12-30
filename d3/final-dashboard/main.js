@@ -8,6 +8,9 @@ const formatTime = d3.timeFormat('%d/%m/%Y')
 
 let calls
 const charts = {}
+const regions = ['northeast', 'midwest', 'south', 'west']
+
+let selectedVariable = 'call_revenue'
 
 window.document.title = 'D3 - Final Dashboard'
 ;(async () => {
@@ -17,4 +20,5 @@ window.document.title = 'D3 - Final Dashboard'
 	})
 	calls = rawData
 	charts.stackedArea = new StackedAreaChart('#stacked-area')
+	charts.donut = new DonutChart('#donut-chart')
 })()
