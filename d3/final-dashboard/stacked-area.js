@@ -9,20 +9,23 @@ class StackedAreaChart {
 	initialize() {
 		const margin = {
 			top: 75,
-			right: 50,
+			right: 10,
 			bottom: 80,
-			left: 100,
+			left: 50,
 		}
-		const width = fullWidth - margin.left - margin.right
+		const svgWidth = fullWidth * 0.55
+		const width = svgWidth - margin.left - margin.right
 		this.width = width
-		const height = fullHeight - margin.top - margin.bottom
+
+		const svgHeight = fullHeight * 0.5
+		const height = svgHeight - margin.top - margin.bottom
 		this.height = height
 
 		const svg = d3
 			.select(this.parent)
 			.append('svg')
-			.attr('width', fullWidth)
-			.attr('height', fullHeight)
+			.attr('width', svgWidth)
+			.attr('height', svgHeight)
 
 		const g = svg
 			.append('g')
