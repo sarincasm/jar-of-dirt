@@ -2,6 +2,10 @@
 
 # EC2
 
+## Rough Architecture of components in a VPC
+
+![VPC](AWS-VPC.png)
+
 ## Useful Links
 
 -  [Guide/Concepts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
@@ -14,3 +18,4 @@
 -  [Role vs Instance Profile](https://medium.com/devops-dudes/the-difference-between-an-aws-role-and-an-instance-profile-ae81abd700d)
 -  [Bootstrap Scripts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
 -  [Instance Metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
+-  [CIDR Visualizer](https://cidr.xyz/)

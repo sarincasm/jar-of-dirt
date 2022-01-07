@@ -150,6 +150,7 @@ async function runInstance() {
 		MaxCount: 1,
 		KeyName: 'dirty-key-1',
 		SecurityGroupIds: ['sg-xxxxxxxxxxxxxxxxx', 'sg-xxxxxxxxxxxxxxxxx'],
+		// SubnetId: '',
 		IamInstanceProfile: {
 			Name: 'Dirty-Instance-Profile-01',
 		},
