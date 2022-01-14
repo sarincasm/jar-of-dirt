@@ -28,7 +28,6 @@ function setupRadioButton() {
 
 	selectBox.on('change', (e) => {
 		const target = e.target
-		selectedValue = target.value
 		selectedSumBy = target.options[target.selectedIndex].text
 		reDraw()
 	})

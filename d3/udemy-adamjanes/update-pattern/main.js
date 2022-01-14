@@ -87,12 +87,8 @@ function drawStructure(data, valueShown, yLabel) {
 		.ticks(3)
 		.tickFormat((d) => d + 'm')
 
-	bottomAxisG = g
-		.append('g')
-		.attr('class', 'x')
-		.attr('transform', `translate(0, ${height})`)
-
-	leftAxisG = g.append('g').attr('class', 'y')
+	bottomAxisG = g.append('g').attr('transform', `translate(0, ${height})`)
+	leftAxisG = g.append('g')
 }
 
 function drawData(data, valueShown, yLabel) {
@@ -117,7 +113,7 @@ function drawData(data, valueShown, yLabel) {
 	const rs = g.selectAll('rect').data(data, (d) => d.month)
 
 	// elements on screen not in rs (not in new data)
-	rs.exit().transition(transitionFunction).attr('y', heightScale(0)).remove()
+	// rs.exit().transition(transitionFunction).attr('y', heightScale(0)).remove()
 
 	/**
    * Repetitive

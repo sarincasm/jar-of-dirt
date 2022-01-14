@@ -117,11 +117,11 @@ function drawData(data, valueShown, yLabel) {
 	const circles = g.selectAll('circle').data(data, (d) => d.month)
 
 	// elements on screen not in rs (not in new data)
-	circles
-		.exit()
-		.transition(transitionFunction)
-		.attr('cy', heightScale(0))
-		.remove()
+	// circles
+	// 	.exit()
+	// 	.transition(transitionFunction)
+	// 	.attr('cy', heightScale(0))
+	// 	.remove()
 
 	circles
 		.enter()

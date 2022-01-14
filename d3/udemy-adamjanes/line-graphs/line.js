@@ -73,7 +73,6 @@ function drawStructure(data) {
 		.tickFormat((d) => `${parseInt(d / 1000)}k`)
 
 	bottomAxisG = g.append('g').attr('transform', `translate(0, ${height})`)
-
 	leftAxisG = g.append('g')
 
 	bottomAxisG.call(bottomAxis)

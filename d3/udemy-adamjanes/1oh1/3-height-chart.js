@@ -57,11 +57,8 @@ function draw(data) {
 
 	const bottomAxis = d3.axisBottom(xScale)
 	const leftAxis = d3.axisLeft(heightScale).ticks(3)
-	g.append('g')
-		.attr('class', 'x')
-		.attr('transform', `translate(0, ${height})`)
-		.call(bottomAxis)
-	g.append('g').attr('class', 'y').call(leftAxis)
+	g.append('g').attr('transform', `translate(0, ${height})`).call(bottomAxis)
+	g.append('g').call(leftAxis)
 
 	rs.enter()
 		.append('rect')
