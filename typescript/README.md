@@ -2,4 +2,4 @@
 
 # Typescript
 
--  [Basics](one-oh-one/)
+-  [Understanding Typescript](understanding-typescript/)

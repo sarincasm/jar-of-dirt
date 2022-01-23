@@ -1,7 +1,7 @@
 /** @format */
 
 // function return type
-function add(n1: number, n2: number): number {
+function addNums(n1: number, n2: number): number {
 	return n1 + n2
 }
 
@@ -19,7 +19,7 @@ let fnP: Function
 
 // lockdown function signature
 let fnT: (num1: number, num2: number) => number
-fnT = add
+fnT = addNums
 // fnT = print // error
 
 // with callback
