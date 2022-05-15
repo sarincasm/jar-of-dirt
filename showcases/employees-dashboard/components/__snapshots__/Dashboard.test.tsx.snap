@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests for Dashboard Changing state calls the API 1`] = `
+Array [
+  "http://localhost:4000/employees/0",
+  Object {
+    "body": "{\\"new_state\\":\\"APPROVED\\"}",
+    "headers": Object {
+      "Content-Type": "application/json",
+    },
+    "method": "PATCH",
+  },
+]
+`;
+
+exports[`Tests for Dashboard Clicking Add button adds an employee 1`] = `
+Array [
+  "http://localhost:4000/employees",
+  Object {
+    "method": "POST",
+  },
+]
+`;
+
+exports[`Tests for Dashboard Dashboard renders Loading state 1`] = `
+Array [
+  "http://localhost:4000/employees",
+]
+`;
