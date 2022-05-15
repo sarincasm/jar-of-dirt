@@ -11,8 +11,8 @@
   "dependencies": {
     "@tmcw/togeojson": "^5.1.2",
     "@turf/turf": "^6.5.0",
+    "@xmldom/xmldom": "^0.8.2",
     "cors": "^2.8.5",
-    "express": "^4.17.3",
-    "xmldom": "^0.6.0"
+    "express": "^4.17.3"
   }
 }

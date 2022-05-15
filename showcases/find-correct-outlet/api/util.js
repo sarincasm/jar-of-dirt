@@ -2,7 +2,7 @@
 
 const tj = require('@tmcw/togeojson')
 const fs = require('fs')
-const DOMParser = require('xmldom').DOMParser
+const DOMParser = require('@xmldom/xmldom').DOMParser
 
 const kml = new DOMParser().parseFromString(
 	fs.readFileSync(__dirname + '/assets/DeliveryAreas.kml', 'utf8')
