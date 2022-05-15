@@ -1,0 +1,26 @@
+{
+  "name": "find-outlet",
+  "version": "0.2.0",
+  "description": "",
+  "scripts": {
+    "app": "cd app && npm run dev",
+    "server": "node api/server.js",
+    "start": "concurrently \"npm run server\" \"npm run app\"",
+    "test": "jest"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "concurrently": "^7.1.0",
+    "jest": "^27.5.1"
+  },
+  "workspaces": [
+    "app",
+    "api"
+  ],
+  "jest": {
+    "projects": [
+      "app/jest.config.js",
+      "api/jest.config.js"
+    ]
+  }
+}
