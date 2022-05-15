@@ -1,6 +1,6 @@
 /** @format */
 
-const tj = require('@mapbox/togeojson')
+const tj = require('@tmcw/togeojson')
 const fs = require('fs')
 const DOMParser = require('xmldom').DOMParser
 

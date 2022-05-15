@@ -22,7 +22,7 @@ npm install
 
 ### Env Variables
 
-Edit the file .env and add a key needed to call the Maps API.
+Edit the file `app/.env.local` and add a key needed to call the Maps API.
 
 ### Then, to run the application,
 
