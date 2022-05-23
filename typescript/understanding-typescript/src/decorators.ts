@@ -176,8 +176,9 @@ function PositiveNumber(target: any, propName: string) {
 	}
 }
 
-function validate(obj: any) {
-	const objValidatorConfig = registeredValidators[obj.constructor.name]
+function validateObj(obj: any) {
+	const objValidatorConfig =
+		registeredValidators[obj.constructor.name]
 	if (!objValidatorConfig) {
 		return true
 	}
@@ -211,15 +212,19 @@ class Course {
 
 function eventHandler(event: SubmitEvent) {
 	event.preventDefault()
-	const titleEl = document.getElementById('title') as HTMLInputElement
-	const priceEl = document.getElementById('price') as HTMLInputElement
+	const titleEl = document.getElementById(
+		'title'
+	) as HTMLInputElement
+	const priceEl = document.getElementById(
+		'price'
+	) as HTMLInputElement
 
 	const title = titleEl.value
 	const price = +priceEl.value
 
 	const createdCourse = new Course(title, price)
 
-	if (!validate(createdCourse)) {
+	if (!validateObj(createdCourse)) {
 		alert('Invalid input, please try again!')
 		return
 	}

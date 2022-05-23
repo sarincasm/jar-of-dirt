@@ -104,8 +104,12 @@ function moveA(a: Animal) {
 const para = document.getElementById('para')!
 para.TEXT_NODE
 
-const inputv1 = <HTMLInputElement>document.getElementById('user-input')
-const input = document.getElementById('user-input') as HTMLInputElement
+const inputv1 = <HTMLInputElement>(
+	document.getElementById('user-input')
+)
+const input = document.getElementById(
+	'user-input'
+)! as HTMLInputElement
 inputv1.value = 'Hii'
 input.value = 'Hi'
 
