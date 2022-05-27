@@ -79,7 +79,7 @@
   // "exclude": [
   //   "node_modules" // default setting
   // ],
-  // "include": [
-  //   "dirty.ts" // explicitly define included
-  // ]
+  "include": [
+    "src/*" // explicitly define included
+  ]
 }
