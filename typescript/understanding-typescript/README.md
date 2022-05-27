@@ -30,7 +30,16 @@ npm run tsc // all included files
 npm run tsc --init
 ```
 
+## Using Type Declaration Files
+
+```
+npm i @types/lodash
+```
+
 # Useful Links
 
 -  https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
 -  https://www.udemy.com/course/understanding-typescript/
+-  https://github.com/DefinitelyTyped/DefinitelyTyped
+-  https://www.typescriptlang.org/docs/handbook/2/type-declarations.html
+-  https://github.com/typestack/class-transformer
