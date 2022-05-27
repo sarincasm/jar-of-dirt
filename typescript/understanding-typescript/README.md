@@ -7,15 +7,16 @@ Understanding Typescript by Maximilian Schwarzmüller
 ## Running
 
 ```
-yarn dev // watch mode
-yarn compile
+npm run serve // run a light server
+npm run dev // watch mode
+npm run compile
 ```
 
 ## Compiling
 
 ```
-yarn tsc <file>.ts // specific file
-yarn tsc // all included files
+npm run tsc <file>.ts // specific file
+npm run tsc // all included files
 ```
 
 ## In This Repo
@@ -26,7 +27,7 @@ yarn tsc // all included files
 ## Initialize TS Project
 
 ```
-yarn tsc --init
+npm run tsc --init
 ```
 
 # Useful Links

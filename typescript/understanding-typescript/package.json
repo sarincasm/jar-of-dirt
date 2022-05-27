@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "yarn tsc --watch",
-		"compile": "yarn tsc",
+		"serve": "lite-server",
+		"tsc": "tsc",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [
@@ -14,6 +15,7 @@
 	"author": "sarincasm <eelsweb@gmail.com> (http://sarincasm.com/)",
 	"license": "UNLICENSED",
 	"devDependencies": {
+		"lite-server": "^2.6.1",
 		"typescript": "^4.5.5"
 	}
 }
