@@ -23,6 +23,7 @@ npm run tsc // all included files
 
 -  [Conceptual](src/)
 -  [With Webpack](webpack-with-ts/)
+-  [Google Maps Project](google-maps-project/)
 
 ## Initialize TS Project
 
