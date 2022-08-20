@@ -10,3 +10,4 @@
 -  [Remix IDE](https://remix.ethereum.org/)
 -  [Structure of a Contract](https://docs.soliditylang.org/en/develop/structure-of-a-contract.html)
 -  [Smart Contracts - Introduction](https://docs.soliditylang.org/en/develop/introduction-to-smart-contracts.html)
+-  https://docs.soliditylang.org/en/v0.8.15/units-and-global-variables.html
