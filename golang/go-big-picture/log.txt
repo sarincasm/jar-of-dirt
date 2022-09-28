@@ -1,0 +1,4 @@
+CRITICAL line 1
+INFO line 2
+CRITICAL line 3
+WARN line 4
