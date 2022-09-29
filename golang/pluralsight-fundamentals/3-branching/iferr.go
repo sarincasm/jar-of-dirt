@@ -15,11 +15,11 @@ func main() {
 	fmt.Println(err0)
 
 	pwd, errWD := os.Getwd()
-    if errWD != nil {
-        fmt.Println(errWD)
-        os.Exit(1)
-    }
-    fmt.Println(pwd)
+	if errWD != nil {
+		fmt.Println(errWD)
+		os.Exit(1)
+	}
+	fmt.Println(pwd)
 
 	_, err := os.Open(pwd + "/test.txt")
 

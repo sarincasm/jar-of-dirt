@@ -5,11 +5,13 @@
 ## Dirty Code
 
 #### Run Web Server
+
 ```
 go run web.go
 ```
 
 #### CLI
+
 ```
 go run cli.go -level INFO
 ```

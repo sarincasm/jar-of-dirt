@@ -6,7 +6,7 @@ import (
 
 func main() {
 
-    sliceWithMake := make([]string, 5, 10)
+	sliceWithMake := make([]string, 5, 10)
 
 	fmt.Printf("Length of sliceWithMake is %d and capacity is %d\n",
 		len(sliceWithMake), cap(sliceWithMake))

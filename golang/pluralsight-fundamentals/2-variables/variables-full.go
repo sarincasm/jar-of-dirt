@@ -29,7 +29,7 @@ func main() {
 	}
 
 	fmt.Println(&name4, &name5)
-	
+
 	var ptr *string = &name5
 	fmt.Println(ptr, *ptr)
 

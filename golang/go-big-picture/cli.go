@@ -3,10 +3,10 @@ package main
 import (
 	"bufio"
 	"flag"
-	"strings"
 	"fmt"
-	"os"
 	"log"
+	"os"
+	"strings"
 )
 
 func main() {

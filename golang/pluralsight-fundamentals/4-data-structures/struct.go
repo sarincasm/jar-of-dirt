@@ -9,14 +9,14 @@ func main() {
 	type courseMeta struct {
 		author string
 		level  string
-		name string
+		name   string
 		rating float64
 	}
 
 	myCourse := courseMeta{
 		author: "Eels",
 		level:  "Intermediate",
-		name: "My Course Name",
+		name:   "My Course Name",
 		rating: 5,
 	}
 
