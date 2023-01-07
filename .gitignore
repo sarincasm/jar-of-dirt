@@ -3,3 +3,4 @@ node_modules
 .env
 large-data
 .next
+.DS_Store
