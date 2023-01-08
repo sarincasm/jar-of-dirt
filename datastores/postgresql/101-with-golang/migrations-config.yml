@@ -1,0 +1,5 @@
+development:
+  dialect: postgres
+  datasource: host=localhost dbname=dirty user=postgres password=lol sslmode=disable
+  dir: migrations
+  table: migrations

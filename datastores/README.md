@@ -2,4 +2,5 @@
 
 # Datastores
 
--  [MongoDB](mongodb/)
+- [MongoDB](mongodb/)
+- [Postgresql](postgresql/)
