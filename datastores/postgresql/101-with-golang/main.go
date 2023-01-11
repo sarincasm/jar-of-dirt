@@ -8,6 +8,11 @@ import (
 	_ "github.com/lib/pq"
 )
 
+type Ingredient struct {
+	Title string `db:"title"`
+	Image string `db:"image"`
+}
+
 func insert_stuff(db *sqlx.DB) {
 	tx := db.MustBegin()
 	tx.MustExec(`
@@ -50,6 +55,42 @@ func insert_stuff(db *sqlx.DB) {
 	tx.Commit()
 }
 
+func select_stuff(db *sqlx.DB) {
+	ingredients := []Ingredient{}
+	query := "SELECT title, image FROM ingredients"
+
+	err := db.Select(&ingredients, query)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(ingredients)
+
+	ingredients2 := []Ingredient{}
+	user_query := "%fruit"
+	// parameterized
+	query2 := query + " WHERE CONCAT(title, type) ILIKE $1"
+	fmt.Println(query2)
+
+	rows, err := db.Query(query2, user_query)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	for rows.Next() {
+		var title string
+		var image string
+		rows.Scan(&title, &image)
+		ingredient := Ingredient{
+			Title: title,
+			Image: image,
+		}
+		ingredients2 = append(ingredients2, ingredient)
+	}
+
+	fmt.Println(ingredients2)
+}
+
 func main() {
 	fmt.Println("Starting")
 
@@ -60,5 +101,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	insert_stuff(db)
+	if false {
+		insert_stuff(db)
+	}
+
+	select_stuff(db)
 }
