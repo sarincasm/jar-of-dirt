@@ -22,7 +22,21 @@
 go run main.go
 ```
 
+### Live Reload
+
+Install [Gin](https://github.com/codegangsta/gin)
+
+```
+go install github.com/codegangsta/gin
+```
+
+```
+~/go/bin/gin --bin bin/gin-bin --appPort 8080 --immediate run main.go
+```
+
 ## Useful Links
 
 1. [Connection](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING)
-1.
+1. https://www.alexedwards.net/blog/serving-static-sites-with-go
+1. https://jmoiron.github.io/sqlx/
+1. [Intro to Go](https://github.com/martensonbj/fem-intro-to-go) by Brenna Martenson

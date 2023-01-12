@@ -1,7 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
 	"os"
 
 	"github.com/jmoiron/sqlx"
@@ -91,6 +94,14 @@ func select_stuff(db *sqlx.DB) {
 	fmt.Println(ingredients2)
 }
 
+func searchHandler(w http.ResponseWriter, r *http.Request) {
+	data := make(map[string]string)
+	data["dirtyKey"] = "dirty"
+	data["dirtyKey2"] = "dirty"
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(data)
+}
+
 func main() {
 	fmt.Println("Starting")
 
@@ -105,5 +116,14 @@ func main() {
 		insert_stuff(db)
 	}
 
-	select_stuff(db)
+	if false {
+		select_stuff(db)
+	}
+
+	http.HandleFunc("/recipes/search", searchHandler)
+
+	fs := http.FileServer(http.Dir("./static"))
+	http.Handle("/", fs)
+
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
