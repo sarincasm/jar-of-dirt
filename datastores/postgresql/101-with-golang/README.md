@@ -34,9 +34,19 @@ go install github.com/codegangsta/gin
 ~/go/bin/gin --bin bin/gin-bin --appPort 8080 --immediate run main.go
 ```
 
+### API Calls
+
+```
+curl --location --request GET 'localhost:8080/ingredients/search?term=a&page=1'
+curl --location --request GET 'localhost:8080/ingredients/type?type=fruit'
+```
+
 ## Useful Links
 
 1. [Connection](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING)
 1. https://www.alexedwards.net/blog/serving-static-sites-with-go
 1. https://jmoiron.github.io/sqlx/
 1. [Intro to Go](https://github.com/martensonbj/fem-intro-to-go) by Brenna Martenson
+1. [PostgreSql Window function](https://www.postgresqltutorial.com/postgresql-window-function/)
+1. https://stackoverflow.com/questions/18635671/how-to-define-multiple-name-tags-in-a-struct
+1. https://stackoverflow.com/questions/12334697/variadic-functions-parameters-pass-through
