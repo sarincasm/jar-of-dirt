@@ -35,3 +35,6 @@ AFTER UPDATE ON recipes
 UPDATE recipes SET title = 'Best Cookies' WHERE title = 'Cookies';
 
 -- +migrate Down
+DROP TRIGGER updated_recipe_trigger ON recipes;
+DROP FUNCTION log_updated_recipe_name();
+DROP TABLE updated_recipes;

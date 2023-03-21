@@ -32,3 +32,4 @@ WHERE
   recipe_id=47;
 
 -- +migrate Down
+ALTER TABLE recipes DROP COLUMN meta;
