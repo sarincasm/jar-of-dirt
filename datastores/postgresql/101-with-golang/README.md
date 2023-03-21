@@ -39,6 +39,9 @@ go install github.com/codegangsta/gin
 ```
 curl --location --request GET 'localhost:8080/ingredients/search?term=a&page=1'
 curl --location --request GET 'localhost:8080/ingredients/type?type=fruit'
+
+curl --location 'localhost:8080/recipes/search'
+curl --location 'localhost:8080/recipes/get?id=1'
 ```
 
 ## Useful Links

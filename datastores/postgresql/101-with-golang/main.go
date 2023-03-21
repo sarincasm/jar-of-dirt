@@ -22,6 +22,12 @@ type Ingredient struct {
 	Image string `db:"image" json:"image"`
 	Type  string `db:"type" json:"type"`
 }
+type RecipeDetail struct {
+	Id    int    `db:"id" json:"id"`
+	Title string `db:"title" json:"title"`
+	Body  string `db:"body" json:"body,omitempty"`
+	Url   string `db:"url" json:"url"`
+}
 
 func insert_stuff(db *sqlx.DB) {
 	tx := db.MustBegin()
@@ -143,6 +149,35 @@ func queryPostgres(query string, args ...any) []Ingredient {
 	return ingredients
 }
 
+func queryPostgresForRecipe(query string, args ...any) []RecipeDetail {
+	recipes := []RecipeDetail{}
+
+	rows, err := db.Query(query, args...)
+
+	if err != nil {
+		fmt.Println(err)
+		return recipes
+	}
+
+	// iterate through rows
+	for rows.Next() {
+		// unmarshal row into recipe struct
+		var recipe RecipeDetail
+		err = rows.Scan(&recipe.Id, &recipe.Title, &recipe.Body, &recipe.Url)
+
+		if err != nil {
+			fmt.Println(err)
+			return recipes
+		}
+
+		// append recipe to recipes
+		recipes = append(recipes, recipe)
+	}
+
+	// return recipes
+	return recipes
+}
+
 func searchHandler(w http.ResponseWriter, r *http.Request) {
 	limit := 10
 
@@ -237,6 +272,139 @@ func searchByTypeHandler(w http.ResponseWriter, r *http.Request) {
 	// json.NewEncoder(w).Encode(json)
 }
 
+func searchRecipesHandler(w http.ResponseWriter, r *http.Request) {
+	// query to get recipe id, title and photo
+	query := `
+    SELECT DISTINCT ON (r.recipe_id)
+      r.recipe_id as id,
+			r.title,
+			'' as body,
+			COALESCE(rp.url, 'default.jpg') AS url
+    FROM
+      recipes r
+    LEFT JOIN
+      recipes_photos rp
+    ON
+      r.recipe_id = rp.recipe_id;
+  `
+
+	recipes := queryPostgresForRecipe(query)
+
+	// marshal recipes into json
+	result, err := json.Marshal(recipes)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// write json to response
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(result)
+}
+
+func getRecipeHandler(w http.ResponseWriter, r *http.Request) {
+	// get recipe id from query string
+	recipe_id := r.URL.Query().Get("id")
+
+	// sql parameterized query to get ingredients by recipe id
+	queryIngredients := `
+    SELECT
+      i.title AS title,
+      i.image AS image,
+      i.type AS type
+    FROM
+      recipe_ingredients ri
+    INNER JOIN
+      ingredients i
+    ON
+      i.id = ri.ingredient_id
+    WHERE
+      ri.recipe_id = $1;
+  `
+
+	// sql parameterized query to get recipe details by recipe id
+	queryRecipeDetails := `
+		SELECT 
+      r.recipe_id as id,
+			r.title,
+			r.body,
+			COALESCE(rp.url, 'default.jpg') AS url
+    FROM 
+      recipes r
+    LEFT JOIN
+      recipes_photos rp
+    ON
+      rp.recipe_id = r.recipe_id
+    WHERE 
+      r.recipe_id = $1;
+	`
+
+	// query postgres
+	ingredients := queryPostgres(queryIngredients, recipe_id)
+	recipeDetails := queryPostgresForRecipe(queryRecipeDetails, recipe_id)
+
+	// marshal ingredients into json
+	// result, err := json.Marshal(ingredients)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// print result
+	fmt.Println(ingredients)
+	fmt.Println(recipeDetails)
+
+	// get photos from recipe
+	var photos []string
+	for _, recipePhotoRow := range recipeDetails {
+		photos = append(photos, recipePhotoRow.Url)
+	}
+
+	type Result struct {
+		Title       string       `json:"title"`
+		Body        string       `json:"body"`
+		Photos      []string     `json:"photos"`
+		Ingredients []Ingredient `json:"ingredients"`
+	}
+
+	result := Result{
+		Title:       recipeDetails[0].Title,
+		Body:        recipeDetails[0].Body,
+		Photos:      photos,
+		Ingredients: ingredients,
+	}
+	response, err := json.Marshal(result)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// write result to response
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(response)
+}
+
+func inner_join() {
+	// inner join query
+	recipe_details := []RecipeDetail{}
+	query := `
+	SELECT r.title, r.body, rp.url
+  FROM recipes_photos rp
+  INNER JOIN
+    recipes r
+  ON
+    rp.recipe_id = r.recipe_id
+	`
+
+	err := db.Select(&recipe_details, query)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println(recipe_details)
+}
+
 func main() {
 	fmt.Println("Starting Main")
 
@@ -255,8 +423,14 @@ func main() {
 		select_stuff(db)
 	}
 
+	if false {
+		inner_join()
+	}
+
 	http.HandleFunc("/ingredients/type", searchByTypeHandler)
 	http.HandleFunc("/ingredients/search", searchHandler)
+	http.HandleFunc("/recipes/search", searchRecipesHandler)
+	http.HandleFunc("/recipes/get", getRecipeHandler)
 
 	fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs)
