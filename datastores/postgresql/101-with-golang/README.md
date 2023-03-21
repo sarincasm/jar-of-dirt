@@ -2,7 +2,7 @@
 
 [Complete Intro To SQL](https://sql.holt.courses/) by Brian Holt, but using Golang, [sqlx](https://github.com/jmoiron/sqlx) and [sql-migrate](https://github.com/rubenv/sql-migrate)
 
-## Quick Start
+## Setup
 
 ### Running Migrations
 
@@ -11,9 +11,25 @@
 (Assuming the database dirty exists)
 
 ```
-~/go/bin/sql-migrate new -config=migrations-config.yml <name>
 ~/go/bin/sql-migrate up -config=migrations-config.yml
+```
+
+To create a new migration
+
+```
+~/go/bin/sql-migrate new -config=migrations-config.yml <name>
+```
+
+To `undo` the last migration
+
+```
 ~/go/bin/sql-migrate down -config=migrations-config.yml
+```
+
+or to undo all migrations
+
+```
+~/go/bin/sql-migrate down -config=migrations-config.yml -limit=0
 ```
 
 ### Running Go Scripts
