@@ -11,7 +11,7 @@
 (Assuming the database dirty exists)
 
 ```
-~/go/bin/sql-migrate new -config=migrations-config.yml init
+~/go/bin/sql-migrate new -config=migrations-config.yml <name>
 ~/go/bin/sql-migrate up -config=migrations-config.yml
 ~/go/bin/sql-migrate down -config=migrations-config.yml
 ```
@@ -53,3 +53,4 @@ curl --location 'localhost:8080/recipes/get?id=1'
 1. [PostgreSql Window function](https://www.postgresqltutorial.com/postgresql-window-function/)
 1. https://stackoverflow.com/questions/18635671/how-to-define-multiple-name-tags-in-a-struct
 1. https://stackoverflow.com/questions/12334697/variadic-functions-parameters-pass-through
+1. https://stackoverflow.com/questions/8270816/converting-go-struct-to-json

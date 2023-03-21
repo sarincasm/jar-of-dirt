@@ -107,6 +107,127 @@ func select_stuff(db *sqlx.DB) {
 	fmt.Println(ingredients2)
 }
 
+func select_json() {
+	// list of queries
+	queries := []string{
+		// select tags
+		"SELECT meta -> 'tags' FROM recipes WHERE meta IS NOT NULL;",
+		// select first tag
+		"SELECT meta -> 'tags' -> 0 FROM recipes WHERE meta IS NOT NULL;",
+		// parse as string
+		"SELECT meta -> 'tags' ->> 0 FROM recipes WHERE meta IS NOT NULL;",
+		// cake as available at that level
+		"SELECT meta -> 'tags' FROM recipes WHERE meta -> 'tags' ? 'cake';",
+		// array contains cake
+		`SELECT meta -> 'tags' FROM recipes WHERE meta -> 'tags' @> '"cake"';`,
+	}
+
+	// iterate over queries
+	for _, query := range queries {
+		type Result []string
+		result := Result{}
+		// execute select query
+		err := db.Select(&result, query)
+
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		// print type and length of result
+		fmt.Println(reflect.TypeOf(result))
+		fmt.Println(len(result))
+
+		// print each element in result
+		for _, element := range result {
+			fmt.Println(element)
+			// print type of element
+			fmt.Println(reflect.TypeOf(element))
+		}
+
+		// print result
+		fmt.Println(result)
+	}
+}
+
+func run_aggregations() {
+	// list of queries
+	queries := []string{
+		"SELECT COUNT(*) FROM ingredients;",
+		"SELECT COUNT(DISTINCT type) FROM ingredients;",
+		"SELECT DISTINCT type FROM ingredients;",
+	}
+
+	// iterate over queries
+	for _, query := range queries {
+		type Result []interface{}
+		result := Result{}
+		// execute select query
+		err := db.Select(&result, query)
+
+		if err != nil {
+			fmt.Println("An error occured: ", err)
+			return
+		}
+
+		// print type and length of result
+		fmt.Println(reflect.TypeOf(result))
+		fmt.Println(len(result))
+
+		// print each element in result
+		for _, element := range result {
+			fmt.Println(element)
+			// print type of element
+			fmt.Println(reflect.TypeOf(element))
+		}
+
+		// print result
+		fmt.Println(result)
+	}
+
+	// list of queries with 2 columns
+	queries2 := []string{
+		`
+			SELECT type, COUNT(type)
+			FROM ingredients
+			GROUP BY type;
+		`,
+		`
+			SELECT type, COUNT(type)
+			FROM ingredients
+			GROUP BY type
+			HAVING COUNT(type) < 10;
+		`,
+		`
+			SELECT type, COUNT(type)
+			FROM ingredients
+			WHERE id > 30
+			GROUP BY type
+			HAVING COUNT(type) < 10;
+		`,
+	}
+
+	// iterate over queries2
+	for _, query := range queries2 {
+		type Result struct {
+			Type  string `db:"type" json:"type"`
+			Count int    `db:"count" json:"count"`
+		}
+		result := []Result{}
+
+		// execute select query
+		err := db.Select(&result, query)
+
+		if err != nil {
+			fmt.Println("An error occured: ", err)
+			return
+		}
+
+		// print result
+		fmt.Println(result)
+	}
+}
+
 func aggregateQuery(query string, args ...any) int {
 	var count int
 	err := db.Get(&count, query, args...)
@@ -425,6 +546,14 @@ func main() {
 
 	if false {
 		inner_join()
+	}
+
+	if false {
+		select_json()
+	}
+
+	if true {
+		run_aggregations()
 	}
 
 	http.HandleFunc("/ingredients/type", searchByTypeHandler)
