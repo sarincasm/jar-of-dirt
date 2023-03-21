@@ -37,3 +37,32 @@ CREATE INDEX idx_en_category_names ON category_names(language) WHERE language = 
 
 -- Index on Derived data
 CREATE INDEX idx_movies_profit ON movies (COALESCE((revenue - budget), 0));
+
+-- Materialized View
+CREATE MATERIALIZED VIEW
+  actor_categories
+
+AS
+
+SELECT
+  arm.person_name, ecn.name AS keyword, COUNT(*) as count
+FROM
+  actors_roles_movies arm
+
+INNER JOIN
+  movie_keywords mk
+ON
+  mk.movie_id = arm.movie_id
+
+INNER JOIN
+  english_category_names ecn
+ON
+  ecn.category_id = mk.category_id
+
+GROUP BY
+  arm.person_name, ecn.name
+
+WITH NO DATA;
+
+-- Index on Materialized View
+CREATE INDEX idx_actor_categories_count ON actor_categories(count DESC NULLS LAST);

@@ -54,3 +54,4 @@ curl --location 'localhost:8080/recipes/get?id=1'
 1. https://stackoverflow.com/questions/18635671/how-to-define-multiple-name-tags-in-a-struct
 1. https://stackoverflow.com/questions/12334697/variadic-functions-parameters-pass-through
 1. https://stackoverflow.com/questions/8270816/converting-go-struct-to-json
+1. https://www.postgresql.org/docs/current/sql-explain.html
