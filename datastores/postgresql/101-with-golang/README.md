@@ -31,7 +31,7 @@ go install github.com/codegangsta/gin
 ```
 
 ```
-~/go/bin/gin --bin bin/gin-bin --appPort 8080 --immediate run main.go
+~/go/bin/gin --bin bin/gin-bin --appPort 8080 --immediate run .
 ```
 
 ### API Calls
