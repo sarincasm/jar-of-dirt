@@ -49,6 +49,7 @@ curl --location 'localhost:8080/recipes/get?id=1'
 1. [Connection](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING)
 1. https://www.alexedwards.net/blog/serving-static-sites-with-go
 1. https://jmoiron.github.io/sqlx/
+1. [Code for the SQL apps project](https://github.com/btholt/sql-apps)
 1. [Intro to Go](https://github.com/martensonbj/fem-intro-to-go) by Brenna Martenson
 1. [PostgreSql Window function](https://www.postgresqltutorial.com/postgresql-window-function/)
 1. https://stackoverflow.com/questions/18635671/how-to-define-multiple-name-tags-in-a-struct
