@@ -14,22 +14,13 @@ import (
 var db *sqlx.DB
 var err error
 
-type Ingredient struct {
-	Title string `db:"title" json:"title"`
-	Image string `db:"image" json:"image"`
-	Type  string `db:"type" json:"type"`
-}
-type RecipeDetail struct {
-	Id    int    `db:"id" json:"id"`
-	Title string `db:"title" json:"title"`
-	Body  string `db:"body" json:"body,omitempty"`
-	Url   string `db:"url" json:"url"`
-}
-
 func main() {
 	fmt.Println("Starting Main")
 
-	db, err = sqlx.Connect("postgres", "dbname=dirty user=postgres password=lol sslmode=disable")
+	// simulate env variable
+	os.Setenv("CONNECTION_STRING", "dbname=dirty user=postgres password=lol sslmode=disable")
+
+	db, err = sqlx.Connect("postgres", os.Getenv("CONNECTION_STRING"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)

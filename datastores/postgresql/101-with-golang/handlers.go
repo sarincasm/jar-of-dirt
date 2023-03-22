@@ -9,6 +9,19 @@ import (
 	"sync"
 )
 
+type Ingredient struct {
+	Title string `db:"title" json:"title"`
+	Image string `db:"image" json:"image"`
+	Type  string `db:"type" json:"type"`
+}
+type RecipeDetail struct {
+	Id    int    `db:"id" json:"id"`
+	Title string `db:"title" json:"title"`
+	Body  string `db:"body" json:"body,omitempty"`
+	Url   string `db:"url" json:"url"`
+}
+type GenericSqlResponse []map[string]interface{}
+
 func aggregateQuery(query string, args ...any) int {
 	var count int
 	err := db.Get(&count, query, args...)
@@ -51,10 +64,11 @@ func queryPostgresForIngredients(query string, args ...any) []Ingredient {
 	return ingredients
 }
 
-func queryPostgresForRecipe(query string, args ...any) []RecipeDetail {
-	recipes := []RecipeDetail{}
+func queryPostgresForRecipe(query string, args ...any) GenericSqlResponse {
+	// declare recipes array
+	recipes := []map[string]interface{}{}
 
-	rows, err := db.Query(query, args...)
+	rows, err := db.Queryx(query, args...)
 
 	if err != nil {
 		fmt.Println(err)
@@ -63,9 +77,8 @@ func queryPostgresForRecipe(query string, args ...any) []RecipeDetail {
 
 	// iterate through rows
 	for rows.Next() {
-		// unmarshal row into recipe struct
-		var recipe RecipeDetail
-		err = rows.Scan(&recipe.Id, &recipe.Title, &recipe.Body, &recipe.Url)
+		recipe := make(map[string]interface{})
+		err = rows.MapScan(recipe)
 
 		if err != nil {
 			fmt.Println(err)
@@ -206,7 +219,6 @@ func searchRecipesHandler(w http.ResponseWriter, r *http.Request) {
     SELECT DISTINCT ON (r.recipe_id)
       r.recipe_id as id,
 			r.title,
-			'' as body,
 			COALESCE(rp.url, 'default.jpg') AS url
     FROM
       recipes r
@@ -270,7 +282,7 @@ func getRecipeHandler(w http.ResponseWriter, r *http.Request) {
 	// declare ingredients slice
 	ingredients := []Ingredient{}
 	// declare recipe details slice
-	recipe_details := []RecipeDetail{}
+	recipe_details_response := GenericSqlResponse{}
 
 	// Create a WaitGroup to wait for both goroutines to complete
 	var wg sync.WaitGroup
@@ -286,13 +298,9 @@ func getRecipeHandler(w http.ResponseWriter, r *http.Request) {
 	go func() {
 		defer wg.Done()
 		fmt.Println("Launching query for recipe details")
-		recipe_details = queryPostgresForRecipe(queryRecipeDetails, recipe_id)
-		fmt.Println("Finished query for recipe details", recipe_details)
+		recipe_details_response = queryPostgresForRecipe(queryRecipeDetails, recipe_id)
+		fmt.Println("Finished query for recipe details", recipe_details_response)
 	}()
-
-	// // query postgres
-	// ingredients = queryPostgresForIngredients(queryIngredients, recipe_id)
-	// recipe_details = queryPostgresForRecipe(queryRecipeDetails, recipe_id)
 
 	fmt.Println("Waiting for goroutines to complete")
 	wg.Wait()
@@ -307,7 +315,19 @@ func getRecipeHandler(w http.ResponseWriter, r *http.Request) {
 
 	// print result
 	fmt.Println(ingredients)
-	fmt.Println(recipe_details)
+	fmt.Println(recipe_details_response)
+
+	// Convert the generic response to a slice of RecipeDetail structs
+	var recipe_details []RecipeDetail
+	for _, item := range recipe_details_response {
+		recipe := RecipeDetail{
+			Id:    int(item["id"].(int64)),
+			Title: item["title"].(string),
+			Body:  item["body"].(string),
+			Url:   item["url"].(string),
+		}
+		recipe_details = append(recipe_details, recipe)
+	}
 
 	// get photos from recipe
 	var photos []string

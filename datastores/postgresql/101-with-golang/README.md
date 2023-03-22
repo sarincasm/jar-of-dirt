@@ -64,7 +64,7 @@ curl --location 'localhost:8080/recipes/get?id=1'
 
 1. [Connection](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING)
 1. https://www.alexedwards.net/blog/serving-static-sites-with-go
-1. https://jmoiron.github.io/sqlx/
+1. [Guide to SQLx](https://jmoiron.github.io/sqlx/)
 1. [Code for the SQL apps project](https://github.com/btholt/sql-apps)
 1. [Intro to Go](https://github.com/martensonbj/fem-intro-to-go) by Brenna Martenson
 1. [PostgreSql Window function](https://www.postgresqltutorial.com/postgresql-window-function/)
@@ -72,3 +72,4 @@ curl --location 'localhost:8080/recipes/get?id=1'
 1. https://stackoverflow.com/questions/12334697/variadic-functions-parameters-pass-through
 1. https://stackoverflow.com/questions/8270816/converting-go-struct-to-json
 1. https://www.postgresql.org/docs/current/sql-explain.html
+1. https://stackoverflow.com/questions/56244336/go-package-with-multiple-files-how-to-structure
