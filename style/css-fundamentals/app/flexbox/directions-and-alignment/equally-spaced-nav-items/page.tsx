@@ -21,16 +21,22 @@ function renderStarter() {
 function renderDone() {
 	return (
 		<section className="p-4 h-60 bg-orange-600">
-			<nav>
-				<ul>
-					<li>
-						<a href="#">Home</a>
+			<nav className="max-w-3xl mx-auto">
+				<ul className="flex flex-col items-center md:flex-row md:justify-evenly">
+					<li className="py-2 font-bold">
+						<a className="py-1" href="#">
+							Home
+						</a>
 					</li>
-					<li>
-						<a href="#">Contact</a>
+					<li className="py-2 font-bold">
+						<a className="py-1" href="#">
+							Contact
+						</a>
 					</li>
-					<li>
-						<a href="#">Browse</a>
+					<li className="py-2 font-bold">
+						<a className="py-1" href="#">
+							Browse
+						</a>
 					</li>
 				</ul>
 			</nav>
