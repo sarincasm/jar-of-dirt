@@ -1,22 +1,31 @@
+import Link from 'next/link'
+
 export default function Page() {
+	const base = '/flexbox'
+	const links = [
+		{
+			href: '/directions-and-alignment',
+			title: 'Directions and Alignment',
+			description: 'Directions and Alignment',
+		},
+	]
+
 	return (
-		<main className="bg-blue-800 p-4">
-			<div className="rounded-lg bg-white shadow-md shadow-black/20 overflow-hidden mx-auto max-w-3xl">
-				<div className="p-4">
-					<h2 className="text-2xl font-bold mt-[-6px] mb-1">
-						Are You Sure ?
-					</h2>
-					<p className="font-light mb-2">This action cannot be undone.</p>
-				</div>
-				<footer className="bg-gray-300 p-4">
-					<button className="py-2 px-4 bg-transparent cursor-pointer rounded border border-solid border-black">
-						Cancel
-					</button>
-					<button className="py-2 px-4 bg-black text-white cursor-pointer rounded border border-solid border-black">
-						OK
-					</button>
-				</footer>
-			</div>
-		</main>
+		<div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
+			{links.map(({href, title, description}) => {
+				return (
+					<Link
+						key={`${href}${title}`}
+						href={base + href}
+						className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+					>
+						<h2 className={`mb-3 text-2xl font-semibold`}>{title}</h2>
+						<p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+							{description}
+						</p>
+					</Link>
+				)
+			})}
+		</div>
 	)
 }

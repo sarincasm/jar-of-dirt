@@ -1,18 +1,25 @@
 import Link from 'next/link'
 
 function renderLinks() {
-	const links = [{href: '/flexbox', label: 'Module 4: Flexbox'}]
+	const links = [
+		{
+			href: '/flexbox',
+			title: 'Module 4: Flexbox',
+			description:
+				'Learn how to build sophisticated, adaptive layouts using Flexbox.',
+		},
+	]
 
-	return links.map(({href, label}) => {
+	return links.map(({href, title, description}) => {
 		return (
 			<Link
-				key={`${href}${label}`}
-				href="/flexbox"
+				key={`${href}${title}`}
+				href={href}
 				className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
 			>
-				<h2 className={`mb-3 text-2xl font-semibold`}>Module 4: Flexbox</h2>
+				<h2 className={`mb-3 text-2xl font-semibold`}>{title}</h2>
 				<p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-					Learn how to build sophisticated, adaptive layouts using Flexbox.
+					{description}
 				</p>
 			</Link>
 		)
