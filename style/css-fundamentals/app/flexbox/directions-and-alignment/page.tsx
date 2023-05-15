@@ -8,6 +8,11 @@ export default function Page() {
 			title: 'Dialog Actions',
 			description: 'Dialog Actions',
 		},
+		{
+			href: '/centered',
+			title: 'Centered',
+			description: 'Centered',
+		},
 	]
 
 	return (
