@@ -9,7 +9,9 @@ function renderStarter() {
 function renderDone() {
 	return (
 		<section className="p-4 h-60 bg-orange-600">
-			<div className="rounded-full w-10 h-10 bg-yellow-400"></div>
+			<div className="flex justify-center items-center h-full">
+				<div className="rounded-full w-10 h-10 bg-yellow-400"></div>
+			</div>
 		</section>
 	)
 }
