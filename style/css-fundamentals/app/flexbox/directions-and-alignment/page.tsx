@@ -13,6 +13,11 @@ export default function Page() {
 			title: 'Centered',
 			description: 'Centered',
 		},
+		{
+			href: '/equally-spaced-nav-items',
+			title: 'Equally Spaced Nav Items',
+			description: 'Equally Spaced Nav Items',
+		},
 	]
 
 	return (
