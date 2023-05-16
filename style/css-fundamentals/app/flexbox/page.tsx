@@ -1,31 +1,21 @@
-import Link from 'next/link'
+import {LinkGrid, GridPost} from '@/components/LinkGrid'
 
 export default function Page() {
 	const base = '/flexbox'
-	const links = [
+	const posts: GridPost[] = [
 		{
 			href: '/directions-and-alignment',
 			title: 'Directions and Alignment',
 			description: 'Directions and Alignment',
+			date: '2023-05-15',
+			category: {
+				href: `${base}`,
+				title: 'Flexbox',
+			},
 		},
-	]
+	].map((post) => ({...post, href: base + post.href}))
+	const mainTitle = 'Module 2: Flexbox'
+	const mainDescription = 'Flexbox'
 
-	return (
-		<div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-			{links.map(({href, title, description}) => {
-				return (
-					<Link
-						key={`${href}${title}`}
-						href={base + href}
-						className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-					>
-						<h2 className={`mb-3 text-2xl font-semibold`}>{title}</h2>
-						<p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-							{description}
-						</p>
-					</Link>
-				)
-			})}
-		</div>
-	)
+	return LinkGrid({posts, mainTitle, mainDescription})
 }
