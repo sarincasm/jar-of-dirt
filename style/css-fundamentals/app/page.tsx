@@ -10,6 +10,13 @@ interface HomePost {
 }
 const posts: HomePost[] = [
 	{
+		date: '2023-05-16',
+		datetime: '',
+		imageUrl: '',
+		href: '/rendering-logic-i',
+		title: 'Module 1: Rendering Logic I',
+	},
+	{
 		date: '2023-05-15',
 		datetime: '',
 		imageUrl: '',

@@ -14,7 +14,7 @@ export default function Page() {
 			},
 		},
 	].map((post) => ({...post, href: base + post.href}))
-	const mainTitle = 'Module 2: Flexbox'
+	const mainTitle = 'Module 4: Flexbox'
 	const mainDescription = 'Flexbox'
 
 	return LinkGrid({posts, mainTitle, mainDescription})
