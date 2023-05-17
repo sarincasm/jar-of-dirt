@@ -15,8 +15,8 @@ export default function Page() {
 			},
 		},
 		{
-			href: '/stretched-content',
-			title: 'Stretched Content',
+			href: '/figures-captions',
+			title: 'Figures & Captions',
 			description: 'Margins',
 			date: '2023-05-17',
 			category: {
@@ -26,8 +26,8 @@ export default function Page() {
 		},
 	].map((post) => ({...post, href: base + post.href}))
 
-	const mainTitle = 'The Box Model'
-	const mainDescription = 'The Box Model'
+	const mainTitle = 'Flow Layout'
+	const mainDescription = 'Flow Layout'
 
 	return LinkGrid({posts, mainTitle, mainDescription})
 }
