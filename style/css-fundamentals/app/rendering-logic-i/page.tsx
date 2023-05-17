@@ -13,6 +13,16 @@ export default function Page() {
 				title: 'Rendering Logic I',
 			},
 		},
+		{
+			href: '/flow-layout',
+			title: 'Flow Layout',
+			description: 'Inline, Block, Inline-Block, Width, Height',
+			date: '2023-05-17',
+			category: {
+				href: `${base}`,
+				title: 'Rendering Logic I',
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 	const mainTitle = 'Module 1: Rendering Logic I'
 	const mainDescription =
