@@ -54,7 +54,7 @@ function renderDone() {
 
 export default function Page() {
 	return (
-		<main className="min-h-full bg-purple-500">
+		<main className="bg-purple-500">
 			<div className="p-10">
 				<h2 className="text-2xl font-bold my-3 text-center text-white">
 					Starter
