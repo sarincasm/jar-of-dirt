@@ -14,6 +14,16 @@ export default function Page() {
 				title: categoryTitle,
 			},
 		},
+		{
+			href: '/stretched-content',
+			title: 'Stretched Content',
+			description: 'Margins',
+			date: '2023-05-17',
+			category: {
+				href: `${base}`,
+				title: categoryTitle,
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 
 	const mainTitle = 'The Box Model'
