@@ -15,7 +15,7 @@ function renderStarter() {
 
 function renderDone() {
 	return (
-		<section>
+		<section className="px-4 max-w-sm mx-auto">
 			<div className="bg-white p-8 rounded-lg">
 				<p className="mb-4">
 					Otters have long, slim bodies and relatively short limbs. Their
