@@ -17,6 +17,13 @@ const posts: HomePost[] = [
 		title: 'Module 1: Rendering Logic I',
 	},
 	{
+		date: '2023-05-19',
+		datetime: '',
+		imageUrl: '',
+		href: '/rendering-logic-ii',
+		title: 'Module 2: Rendering Logic II',
+	},
+	{
 		date: '2023-05-15',
 		datetime: '',
 		imageUrl: '',
