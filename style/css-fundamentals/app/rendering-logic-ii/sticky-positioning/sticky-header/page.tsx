@@ -27,7 +27,7 @@ function renderDone() {
 	return (
 		<section className="overflow-y-scroll h-52 bg-gray-400">
 			<div className="h-80">
-				<header className="h-12 bg-blue-500 text-white opacity-95">
+				<header className="sticky -top-4 h-16 p-4 bg-blue-500 text-white opacity-95">
 					<ul className="p-0 m-0 text-center">
 						<li className="inline-block p-0 my-0 mx-4 leading-10">
 							Home
