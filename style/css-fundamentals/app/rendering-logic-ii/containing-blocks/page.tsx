@@ -14,6 +14,16 @@ export default function Page() {
 				title: categoryTitle,
 			},
 		},
+		{
+			href: '/new-improved-flag',
+			title: 'New & Improved Flag',
+			description: 'Positioned Layout: Absolute and Relative Positioning',
+			date: '2023-05-19',
+			category: {
+				href: `${base}`,
+				title: categoryTitle,
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 
 	const mainTitle = 'Containing Blocks'
