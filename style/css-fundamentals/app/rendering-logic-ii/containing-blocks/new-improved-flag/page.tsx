@@ -37,7 +37,7 @@ function renderStarter() {
 function renderDone() {
 	return (
 		<section className="p-4">
-			<article className="max-w-xs shadow-sm mx-auto my-0 p-4 rounded-lg bg-white">
+			<article className="relative max-w-xs shadow-sm mx-auto my-0 p-4 rounded-lg bg-white">
 				<div className="mb-3 -m-4">
 					<Image
 						alt="Product photo of a minimal watch"
@@ -47,7 +47,7 @@ function renderDone() {
 						className="w-full rounded-t-lg"
 					/>
 				</div>
-				<div className="text-base font-medium leading-loose shadow-sm bg-yellow-100">
+				<div className="absolute top-2 -left-2 pl-2 rounded-l rounded-r-2xl pr-3 text-base font-medium leading-loose shadow-sm bg-yellow-100">
 					New and Improved!
 				</div>
 				<h2 className="text-2xl font-medium mb-1">
