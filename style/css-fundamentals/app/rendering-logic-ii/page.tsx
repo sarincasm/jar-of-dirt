@@ -13,6 +13,16 @@ export default function Page() {
 				title: 'Rendering Logic II',
 			},
 		},
+		{
+			href: '/sticky-positioning',
+			title: 'Sticky Positioning',
+			description: 'Positioned Layout: Sticky Positioning',
+			date: '2023-05-20',
+			category: {
+				href: `${base}`,
+				title: 'Rendering Logic II',
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 	const mainTitle = 'Module 2: Rendering Logic II'
 	const mainDescription =
