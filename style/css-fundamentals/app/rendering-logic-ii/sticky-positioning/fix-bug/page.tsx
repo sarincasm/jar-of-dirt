@@ -26,8 +26,8 @@ function renderDone() {
 	return (
 		<section className="overflow-y-scroll h-52 bg-gray-400">
 			<div className="h-80">
-				<header className="p-4">
-					<div className="sticky top-0 w-12 h-12 bg-pink-500 rounded"></div>
+				<header className="p-4 sticky top-0">
+					<div className="w-12 h-12 bg-pink-500 rounded"></div>
 				</header>
 				<main className="p-4">
 					<p>
