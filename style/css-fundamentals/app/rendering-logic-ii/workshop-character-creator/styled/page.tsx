@@ -28,12 +28,15 @@ function ControlPane({title, options}: ControlPaneProps) {
 				</span>
 			</h2>
 
-			<div>
+			<div className="relative whitespace-nowrap overflow-x-auto -mx-5 -mb-5 p-5">
 				{options.map(({id, children}) => (
 					<button
 						key={id}
 						className="w-12 h-12 text-xl font-bold border-2 border-gray-700 bg-white rounded-sm cursor-pointer mr-1"
 					>
+						<span className="absolute overflow-hidden clip h-px w-px -m-px p-0 border-0">
+							Description for Non-Sighted
+						</span>
 						{children}
 					</button>
 				))}
@@ -44,10 +47,12 @@ function ControlPane({title, options}: ControlPaneProps) {
 
 export default function Page() {
 	return (
-		<>
-			<main className="pt-32 pb-16 bg-green-100">
-				<div className="max-w-5xl px-8 mx-auto">
-					<header className="pb-16">
+		<div className="bg-green-300">
+			<main className="pt-32 pb-16 bg-green-300 w-full">
+				<div className="fixed bottom-0 bg-green-100 h-2/5 w-full "></div>
+
+				<div className="relative max-w-5xl px-8 mx-auto">
+					<header className="pb-16 w-2/3">
 						<h1 className="text-5xl font-semibold mt-0 mb-4 tracking-tighter">
 							Create your Character
 						</h1>
@@ -57,7 +62,7 @@ export default function Page() {
 						</p>
 					</header>
 
-					<div>
+					<div className="w-1/2">
 						<ControlPane
 							title="Bodies"
 							options={bodyOptions}
@@ -95,13 +100,13 @@ export default function Page() {
 							// handleSelectOption={setClothesColor}
 						/>
 					</div>
+				</div>
 
-					<div>
-						<Character
-							skinColor={skinColorOptions[0].color}
-							clothesColor={clothesColorOptions[0].color}
-						/>
-					</div>
+				<div className="fixed left-[60%] top-[15%] bottom-[15%] min-h-[500px]">
+					<Character
+						skinColor={skinColorOptions[0].color}
+						clothesColor={clothesColorOptions[0].color}
+					/>
 				</div>
 			</main>
 
@@ -111,11 +116,12 @@ export default function Page() {
 					href="https://www.openpeeps.com/"
 					target="_blank"
 					rel="noopener noreferrer"
+					className="text-inherit"
 				>
 					Open Peeps
 				</a>
 				, by Pablo Stanley
 			</footer>
-		</>
+		</div>
 	)
 }
