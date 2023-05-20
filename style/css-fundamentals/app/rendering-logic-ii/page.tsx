@@ -23,6 +23,17 @@ export default function Page() {
 				title: 'Rendering Logic II',
 			},
 		},
+		{
+			href: '/workshop-character-creator',
+			title: 'Workshop: Character Creator',
+			description:
+				"We've covered a lot of stuff in this module. Let's build something with all of our newfound knowledge!",
+			date: '2023-05-20',
+			category: {
+				href: `${base}`,
+				title: 'Workshop',
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 	const mainTitle = 'Module 2: Rendering Logic II'
 	const mainDescription =
