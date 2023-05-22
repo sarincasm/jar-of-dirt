@@ -10,6 +10,13 @@ pulumi config set aws:profile eels.de.main
 pulumi up
 ```
 
+## Check output
+
+```
+aws s3 ls $(pulumi stack output bucketName)
+curl $(pulumi stack output bucketEndpoint)
+```
+
 ## Useful Links
 
 -  [Pulumi Quick Start](https://www.pulumi.com/docs/clouds/aws/get-started/create-project/)
