@@ -17,6 +17,15 @@ aws s3 ls $(pulumi stack output bucketName)
 curl $(pulumi stack output bucketEndpoint)
 ```
 
+## Clean up
+
+(This will also remove the Pulumi.prod yaml file. Check the file (Deleted) for what it should look like).
+
+```bash
+pulumi destroy
+pulumi stack rm
+```
+
 ## Useful Links
 
 -  [Pulumi Quick Start](https://www.pulumi.com/docs/clouds/aws/get-started/create-project/)
