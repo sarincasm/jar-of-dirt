@@ -19,7 +19,7 @@ function renderStarter() {
 
 function renderDone() {
 	return (
-		<section className="p-4 bg-white">
+		<section className="p-4 bg-white flex">
 			<nav className="w-56 p-4 border-2 border-solid border-black">
 				<h2 className="text-2xl font-bold">Navigation</h2>
 				<ul>
@@ -28,7 +28,7 @@ function renderDone() {
 					<li>Contact</li>
 				</ul>
 			</nav>
-			<main className="p-4 border-2 border-solid border-black">
+			<main className="p-4 border-2 border-solid border-black grow">
 				<h1 className="text-3xl font-bold">Welcome to Thingstore</h1>
 				<p>Please enjoy your time shopping!</p>
 			</main>
