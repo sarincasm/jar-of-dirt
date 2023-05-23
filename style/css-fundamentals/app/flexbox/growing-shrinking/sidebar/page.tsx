@@ -28,7 +28,7 @@ function renderDone() {
 					<li>Contact</li>
 				</ul>
 			</nav>
-			<main className="p-4 border-2 border-solid border-black grow">
+			<main className="p-4 border-2 border-solid border-black grow shrink-0">
 				<h1 className="text-3xl font-bold">Welcome to Thingstore</h1>
 				<p>Please enjoy your time shopping!</p>
 			</main>

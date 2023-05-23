@@ -14,6 +14,16 @@ export default function Page() {
 				title: categoryTitle,
 			},
 		},
+		{
+			href: '/alert',
+			title: 'Alert',
+			description: 'Alert',
+			date: '2023-05-23',
+			category: {
+				href: `${base}`,
+				title: categoryTitle,
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 
 	const mainTitle = 'Directions and Alignment'
