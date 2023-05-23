@@ -15,7 +15,7 @@ function renderDone() {
 	return (
 		<section className="p-4 bg-white">
 			<div className="flex items-center shadow-md rounded p-2">
-				<div className="flex w-10 h-10 justify-center items-center bg-green-500 text-white rounded-full mr-2"></div>
+				<div className="flex w-10 h-10 justify-center items-center bg-green-500 text-white rounded-full mr-2 shrink-0 self-start"></div>
 				<div className="flex-grow">
 					Thanks for participating in our survey!
 				</div>
