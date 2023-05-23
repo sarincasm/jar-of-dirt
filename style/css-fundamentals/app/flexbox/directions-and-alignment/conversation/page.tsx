@@ -40,14 +40,14 @@ function renderDone() {
 	}
 	function renderMessageTo({message}: {message: string}) {
 		return (
-			<li className="block p-4 m-2 rounded-md w-fit max-w-[70%] bg-gray-200 text-black">
+			<li className="block p-4 m-2 rounded-md w-fit max-w-[70%] bg-gray-200 text-black self-end">
 				{message}
 			</li>
 		)
 	}
 	return (
-		<section className="p-4 w-96 mx-auto">
-			<ol className="min-h-full m-0 p-0 list-none">
+		<section className="p-4 w-96 mx-auto border">
+			<ol className="min-h-full m-0 p-0 list-none flex flex-col justify-end">
 				{renderMessageFrom({message: 'Can you get me a big salad?'})}
 				{renderMessageTo({
 					message: " What big salad? I'm going to the coffee shop.",
