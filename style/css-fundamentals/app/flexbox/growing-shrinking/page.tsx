@@ -34,6 +34,16 @@ export default function Page() {
 				title: categoryTitle,
 			},
 		},
+		{
+			href: '/sidebar-layout',
+			title: 'Sidebar Layout',
+			description: 'Sidebar Layout',
+			date: '2023-05-24',
+			category: {
+				href: `${base}`,
+				title: categoryTitle,
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 
 	const mainTitle = 'Directions and Alignment'
