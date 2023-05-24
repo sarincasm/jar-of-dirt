@@ -2,8 +2,8 @@ function renderStarter() {
 	return (
 		<section className="p-4 bg-white flex">
 			<nav className="h-52 border-2 border-solid border-red-500 bg-red-500/20"></nav>
-			<main className="h-52 border-2 border-solid border-purple-400/20"></main>
-			<aside className="h-52 border-2 border-solid border-green-400/20 hidden md:block"></aside>
+			<main className="h-52 border-2 border-solid border-purple-400 bg-purple-400/20"></main>
+			<aside className="h-52 border-2 border-solid border-green-400 hidden bg-green-400/20 md:block"></aside>
 		</section>
 	)
 }
@@ -11,9 +11,9 @@ function renderStarter() {
 function renderDone() {
 	return (
 		<section className="p-4 bg-white flex">
-			<nav className="h-52 border-2 border-solid border-red-500 bg-red-500/20"></nav>
-			<main className="h-52 border-2 border-solid border-purple-400/20"></main>
-			<aside className="h-52 border-2 border-solid border-green-400/20 hidden md:block"></aside>
+			<nav className="h-52 border-2 border-solid border-red-500 bg-red-500/20 min-w-[150px] max-w-[250px] basis-60 shrink-[10000] hidden sm:block"></nav>
+			<main className="h-52 border-2 border-solid border-purple-400 bg-purple-400/20 flex-1 basis-80"></main>
+			<aside className="h-52 border-2 border-solid border-green-400 bg-green-400/20 min-w-[150px] max-w-[250px] basis-60 shrink-[10000]"></aside>
 		</section>
 	)
 }
