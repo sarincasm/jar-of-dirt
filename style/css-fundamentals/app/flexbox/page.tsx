@@ -33,6 +33,16 @@ export default function Page() {
 				title: 'Flexbox',
 			},
 		},
+		{
+			href: '/groups-gaps',
+			title: 'Groups and Gaps',
+			description: 'Groups and Gaps',
+			date: '2023-05-24',
+			category: {
+				href: `${base}`,
+				title: 'Flexbox',
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 	const mainTitle = 'Module 4: Flexbox'
 	const mainDescription = 'Flexbox'
