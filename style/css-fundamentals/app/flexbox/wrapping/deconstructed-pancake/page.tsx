@@ -10,10 +10,10 @@ function renderStarter() {
 
 function renderDone() {
 	return (
-		<section className="p-4 bg-white flex">
-			<article className="m-2 rounded-2xl h-52 bg-blue-400 border-blue-300 border-2"></article>
-			<article className="m-2 rounded-2xl h-52 bg-pink-400 border-pink-300 border-2"></article>
-			<article className="m-2 rounded-2xl h-52 bg-yellow-400 border-yellow-300 border-2"></article>
+		<section className="p-4 bg-white flex justify-center flex-wrap">
+			<article className="m-2 rounded-2xl h-52 bg-blue-400 border-blue-300 border-2 basis-60"></article>
+			<article className="m-2 rounded-2xl h-52 bg-pink-400 border-pink-300 border-2 basis-60"></article>
+			<article className="m-2 rounded-2xl h-52 bg-yellow-400 border-yellow-300 border-2 basis-60"></article>
 		</section>
 	)
 }
