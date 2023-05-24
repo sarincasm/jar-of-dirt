@@ -56,8 +56,8 @@ export default function Page() {
 		},
 	].map((post) => ({...post, href: base + post.href}))
 
-	const mainTitle = 'Directions and Alignment'
-	const mainDescription = 'Directions and Alignment'
+	const mainTitle = 'Growing and Shrinking'
+	const mainDescription = 'Growing and Shrinking'
 
 	return LinkGrid({posts, mainTitle, mainDescription})
 }
