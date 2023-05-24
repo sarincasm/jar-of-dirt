@@ -9,15 +9,17 @@ function visuallyHidden(text: string) {
 function renderStarter() {
 	return (
 		<section className="p-4 bg-white flex">
-			<header>Free shipping on orders over $100</header>
-			<label>
-				{visuallyHidden('Search')}
-				<input type="text" placeholder="Search..." />
-			</label>
-			<button>
-				{visuallyHidden('Current Language')}
-				English
-			</button>
+			<header>
+				Free shipping on orders over $100
+				<label>
+					{visuallyHidden('Search')}
+					<input type="text" placeholder="Search..." />
+				</label>
+				<button>
+					{visuallyHidden('Current Language')}
+					English
+				</button>
+			</header>
 		</section>
 	)
 }
@@ -25,15 +27,17 @@ function renderStarter() {
 function renderDone() {
 	return (
 		<section className="p-4 bg-white flex">
-			<header>Free shipping on orders over $100</header>
-			<label>
-				{visuallyHidden('Search')}
-				<input type="text" placeholder="Search..." />
-			</label>
-			<button>
-				{visuallyHidden('Current Language')}
-				English
-			</button>
+			<header className="flex w-full gap-2">
+				Free shipping on orders over $100
+				<label className="ml-auto">
+					{visuallyHidden('Search')}
+					<input type="text" placeholder="Search..." />
+				</label>
+				<button>
+					{visuallyHidden('Current Language')}
+					English
+				</button>
+			</header>
 		</section>
 	)
 }
