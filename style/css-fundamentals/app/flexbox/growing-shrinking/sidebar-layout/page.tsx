@@ -9,9 +9,9 @@ function renderStarter() {
 
 function renderDone() {
 	return (
-		<section className="p-4 bg-white flex">
-			<nav className="h-52 border-2 border-solid border-red-500"></nav>
-			<main className="h-52 border-2 border-solid border-yellow-300"></main>
+		<section className="p-4 bg-white flex justify-center">
+			<nav className="h-52 border-2 border-solid border-red-500 max-w-[150px] flex-1"></nav>
+			<main className="h-52 border-2 border-solid border-yellow-300 flex-[2] max-w-lg"></main>
 		</section>
 	)
 }
