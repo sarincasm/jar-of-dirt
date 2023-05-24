@@ -39,8 +39,8 @@ function renderStarter() {
 
 function renderDone() {
 	return (
-		<section className="p-4 bg-white">
-			<div>
+		<section className="p-4 bg-white flex gap-3">
+			<div className="w-36 flex flex-col gap-3 flex-[0_0_200px]">
 				<button>
 					<Image
 						src="https://courses.joshwcomeau.com/cfj-mats/cat-300px.jpg"
@@ -57,14 +57,15 @@ function renderDone() {
 						height={300}
 					/>
 				</button>
-				<div>
+				<div className="flex justify-between mt-auto">
 					<button>Prev</button>
 					<button>Next</button>
 				</div>
 			</div>
-			<div>
+			<div className="grow">
 				<Image
 					src="https://courses.joshwcomeau.com/cfj-mats/cat-300px.jpg"
+					className="w-full"
 					width={300}
 					height={300}
 					alt="cat"
