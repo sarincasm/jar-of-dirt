@@ -70,8 +70,8 @@ function renderStarter() {
 function renderDone() {
 	return (
 		<section className="p-4 bg-white">
-			<main>
-				<article className="m-2 rounded-2xl shadow-md">
+			<main className="flex">
+				<article className="m-2 rounded-2xl shadow-md flex-1">
 					<Image
 						src="https://courses.joshwcomeau.com/cfj-mats/cat-300px.jpg"
 						width={300}
@@ -89,7 +89,7 @@ function renderDone() {
 						</p>
 					</section>
 				</article>
-				<article className="m-2 rounded-2xl shadow-md">
+				<article className="m-2 rounded-2xl shadow-md flex-1">
 					<Image
 						src="https://courses.joshwcomeau.com/cfj-mats/cat-two-300px.jpg"
 						width={300}
@@ -109,7 +109,7 @@ function renderDone() {
 						</p>
 					</section>
 				</article>
-				<article className="m-2 rounded-2xl shadow-md">
+				<article className="m-2 rounded-2xl shadow-md flex-1">
 					<Image
 						src="https://courses.joshwcomeau.com/cfj-mats/cat-three-300px.jpg"
 						width={300}
