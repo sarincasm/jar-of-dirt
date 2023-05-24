@@ -55,7 +55,27 @@ function renderStarter() {
 
 function renderDone() {
 	return (
-		<section className="p-4 bg-white flex">
+		<section className="p-4 bg-white flex flex-row-reverse">
+			<aside className="ml-4 min-w-[200px]">
+				<nav className="bg-gray-200 p-4">
+					<h2 className="text-base uppercase text-gray-600 tracking-wider font-normal">
+						Table of Contents
+					</h2>
+					<ul className="pl-4">
+						<li className="py-2 px-0">
+							<a href="#heading-one">Heading One</a>
+						</li>
+						<li className="py-2 px-0">
+							<a href="#heading-two" className="text-black">
+								Heading Two
+							</a>
+						</li>
+						<li className="py-2 px-0">
+							<a href="#heading-three">Heading Three</a>
+						</li>
+					</ul>
+				</nav>
+			</aside>{' '}
 			<main className="flex-1">
 				<h2 className="text-2xl font-bold" id="heading-one">
 					Heading One
@@ -83,27 +103,7 @@ function renderDone() {
 					</label>
 					<button>Subscribe</button>
 				</form>
-			</main>
-			<aside className="ml-4 min-w-[200px]">
-				<nav className="bg-gray-200 p-4">
-					<h2 className="text-base uppercase text-gray-600 tracking-wider font-normal">
-						Table of Contents
-					</h2>
-					<ul className="pl-4">
-						<li className="py-2 px-0">
-							<a href="#heading-one">Heading One</a>
-						</li>
-						<li className="py-2 px-0">
-							<a href="#heading-two" className="text-black">
-								Heading Two
-							</a>
-						</li>
-						<li className="py-2 px-0">
-							<a href="#heading-three">Heading Three</a>
-						</li>
-					</ul>
-				</nav>
-			</aside>{' '}
+			</main>{' '}
 		</section>
 	)
 }
