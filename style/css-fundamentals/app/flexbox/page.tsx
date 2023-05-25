@@ -53,6 +53,17 @@ export default function Page() {
 				title: 'Flexbox',
 			},
 		},
+		{
+			href: '/flexbox-interactions',
+			title: 'Flexbox Interactions',
+			description:
+				"Let's take a look at how Flexbox interacts with other properties and layout modes.",
+			date: '2023-05-24',
+			category: {
+				href: `${base}`,
+				title: 'Flexbox',
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 	const mainTitle = 'Module 4: Flexbox'
 	const mainDescription = 'Flexbox'
