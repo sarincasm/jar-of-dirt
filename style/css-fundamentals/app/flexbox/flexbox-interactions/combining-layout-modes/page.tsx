@@ -53,8 +53,8 @@ function renderStarter() {
 
 function renderDone() {
 	return (
-		<section className="p-4 bg-white flex gap-8 border-2 border-pink-600">
-			<div className="flex-1 p-4">
+		<section className="p-4 bg-white flex gap-8 border-2 border-pink-600 overflow-y-auto">
+			<div className="flex-1 p-4 sticky top-0">
 				<h1 className="text-2xl font-bold mb-4">Growing Column</h1>
 				<p className="mb-4">
 					This column will grow very tall indeed, whilst the adjacent one
@@ -67,7 +67,7 @@ function renderDone() {
 					of type and scrambled it to make a type specimen book
 				</p>
 			</div>
-			<div className="flex-1 p-4">
+			<div className="flex-1 p-4 h-0">
 				<p className="mb-4">
 					Here is a list of all the letters in the English language!
 				</p>
