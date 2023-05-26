@@ -14,6 +14,16 @@ export default function Page() {
 				title: categoryTitle,
 			},
 		},
+		{
+			href: '/sticky-sidebar',
+			title: 'Sticky Sidebar',
+			description: 'Sticky Sidebar',
+			date: '2023-05-26',
+			category: {
+				href: `${base}`,
+				title: categoryTitle,
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 
 	const mainTitle = 'Flexbox Recipes'
