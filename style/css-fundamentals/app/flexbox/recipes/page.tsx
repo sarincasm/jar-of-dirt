@@ -24,6 +24,16 @@ export default function Page() {
 				title: categoryTitle,
 			},
 		},
+		{
+			href: '/overstuffed-centered',
+			title: 'Overstuffed and Centered',
+			description: 'Overstuffed and Centered',
+			date: '2023-05-26',
+			category: {
+				href: `${base}`,
+				title: categoryTitle,
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 
 	const mainTitle = 'Flexbox Recipes'
