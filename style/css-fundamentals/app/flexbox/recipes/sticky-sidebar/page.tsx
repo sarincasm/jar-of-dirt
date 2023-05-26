@@ -51,7 +51,7 @@ function renderStarter() {
 function renderDone() {
 	return (
 		<section className="p-4 bg-white flex">
-			<nav className="sticky top-0 p-4">
+			<nav className="sticky top-0 p-4 self-start">
 				<h2 className="text-2xl font-bold mb-2">Navigation</h2>
 				<ul>
 					<li>Section One</li>
