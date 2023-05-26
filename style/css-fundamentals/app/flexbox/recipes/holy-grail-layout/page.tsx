@@ -24,18 +24,18 @@ function renderStarter() {
 
 function renderDone() {
 	return (
-		<section className="p-4 bg-white">
+		<section className="p-4 bg-white flex flex-col h-96">
 			<header className="border-2 p-4 border-yellow-300 bg-yellow-300/30">
 				Header
 			</header>
-			<section>
-				<nav className="border-2 p-4 border-green-300 bg-green-300/30">
+			<section className="flex w-full grow">
+				<nav className="border-2 p-4 border-green-300 bg-green-300/30 w-64">
 					Nav
 				</nav>
-				<main className="border-2 p-4 border-blue-300 bg-blue-300/30">
+				<main className="border-2 p-4 border-blue-300 bg-blue-300/30 grow min-w-[400px]">
 					Main
 				</main>
-				<aside className="border-2 p-4 border-pink-300 bg-pink-300/30">
+				<aside className="border-2 p-4 border-pink-300 bg-pink-300/30 w-64">
 					Aside
 				</aside>
 			</section>
