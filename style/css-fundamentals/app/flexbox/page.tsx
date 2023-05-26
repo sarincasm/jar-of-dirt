@@ -64,6 +64,17 @@ export default function Page() {
 				title: 'Flexbox',
 			},
 		},
+		{
+			href: '/recipes',
+			title: 'Recipes',
+			description:
+				"Let's see how we can use Flexbox in some practical every-day examples.",
+			date: '2023-05-24',
+			category: {
+				href: `${base}`,
+				title: 'Flexbox',
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 	const mainTitle = 'Module 4: Flexbox'
 	const mainDescription = 'Flexbox'
