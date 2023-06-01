@@ -1,0 +1,22 @@
+{
+  "name": "abstract-syntax-trees",
+  "version": "0.4.0",
+  "description": "Exploring ASTs",
+  "main": "babel-transform-jquery.js",
+  "scripts": {
+    "transform": "ts-node babel-transform-jquery.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sarincasm <eels.social@g6g.me> (https://www.sarincasm.com/)",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@babel/parser": "^7.22.4",
+    "@babel/template": "^7.21.9",
+    "@babel/traverse": "^7.22.4",
+    "@types/babel__generator": "^7.6.4",
+    "@types/babel__template": "^7.4.1",
+    "@types/babel__traverse": "^7.20.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}

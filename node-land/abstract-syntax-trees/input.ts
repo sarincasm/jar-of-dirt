@@ -1,0 +1,2 @@
+foo.hide()
+$(el).hide()
