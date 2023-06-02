@@ -55,7 +55,7 @@ export default function Page() {
 						</div>
 						<input
 							type="text"
-							className="border-none bg-transparent border-b-gray-300 border-b pl-6 text-sm text-gray-100 outline-offset-4 placeholder:text-gray-500"
+							className="border-solid bg-transparent border-b-gray-300 border-b pl-6 text-sm text-gray-100 outline-offset-4 placeholder:text-gray-500"
 							placeholder="Search"
 						/>
 						<Icon className="absolute top-0 left-0 bottom-0 m-auto" />
