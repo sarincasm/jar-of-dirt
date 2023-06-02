@@ -75,6 +75,16 @@ export default function Page() {
 				title: 'Flexbox',
 			},
 		},
+		{
+			href: '/workshop-sole-ankle',
+			title: 'Workshop: Sole & Ankle',
+			description: "In this workshop, we'll build a sneaker store!",
+			date: '2023-06-02',
+			category: {
+				href: `${base}`,
+				title: 'Workshop',
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 	const mainTitle = 'Module 4: Flexbox'
 	const mainDescription = 'Flexbox'
