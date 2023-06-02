@@ -11,6 +11,11 @@ export function pluralize(string: string, num: number) {
 	return num === 1 ? `1 ${string}` : `${num} ${string}s`
 }
 
+export function isNewShoe(releaseDate: Shoe['releaseDate']) {
+	const daysDiff = (Date.now() - releaseDate) / (1000 * 60 * 60 * 24)
+	return daysDiff < 30
+}
+
 function Icon({className = '', color = 'white'}) {
 	return (
 		<div
@@ -19,22 +24,66 @@ function Icon({className = '', color = 'white'}) {
 	)
 }
 
-function Shoe({slug, imageSrc, name, price, numOfColors}: Shoe) {
+function Shoe({
+	slug,
+	imageSrc,
+	name,
+	price,
+	numOfColors,
+	salePrice,
+	releaseDate,
+}: Shoe) {
+	let variant = 'default'
+	if (typeof salePrice === 'number') {
+		variant = 'on-sale'
+	} else if (isNewShoe(releaseDate)) {
+		variant = 'new-release'
+	}
+
+	const style: {[key: string]: string} = {
+		default: 'hidden',
+		'on-sale': 'bg-red-400',
+		'new-release': 'bg-purple-600',
+	}
+	const text: {[key: string]: string} = {
+		default: '',
+		'on-sale': 'Sale',
+		'new-release': 'Just Released!',
+	}
+
+	const onSale = typeof salePrice === 'number'
+
 	return (
-		<a href={`/shoe/${slug}`}>
-			<article>
+		<a key={slug} className="basis-80 flex-1" href={`/shoe/${slug}`}>
+			<article className="relative">
 				<div className="relative">
-					<Image alt="shoe" width={864} height={600} src={imageSrc} />
+					<Image
+						alt="shoe"
+						width={864}
+						height={600}
+						src={imageSrc}
+						className="rounded-t-2xl rounded-b-md"
+					/>
 					<span className="block h-8"></span>
-					<div className="text-base">
+					<div className="text-base flex justify-between">
 						<h3 className="font-medium text-gray-900">{name}</h3>
-						<span>{formatPrice(price)}</span>
+						<span className={onSale ? 'line-through text-gray-400' : ''}>
+							{formatPrice(price)}
+						</span>
 					</div>
-					<div className="text-base">
+					<div className="text-base flex justify-between">
 						<p className="text-gray-700">
 							{pluralize('Color', numOfColors)}
 						</p>
+						<span className={onSale ? 'text-red-500' : 'hidden'}>
+							{salePrice ? formatPrice(salePrice) : ''}
+						</span>
 					</div>
+				</div>
+				<div
+					className={`${style[variant]} absolute top-3 -right-1.5 p-3 rounded-sm text-white text-sm`}
+				>
+					{text[variant]}
 				</div>
 			</article>
 		</a>
@@ -45,11 +94,11 @@ export default function Page() {
 	return (
 		<>
 			<header>
-				<div className="text-sm text-gray-300 bg-gray-900">
-					<span className="text-white">
+				<div className="text-sm text-gray-300 bg-gray-900 flex px-8 gap-8 py-3 items-center">
+					<span className="text-white mr-auto">
 						Free shipping on domestic orders over $75!
 					</span>
-					<label htmlFor="" className="relative">
+					<label className="relative">
 						<div className="absolute overflow-hidden [clip:rect(0,0,0,0)] h-px w-px -m-px p-0 border-0">
 							Search
 						</div>
@@ -70,11 +119,13 @@ export default function Page() {
 						<Icon />
 					</button>
 				</div>
-				<div className="py-0 px-8 border-b border-gray-300">
-					<a href="/">
-						<h1 className="text-2xl font-bold">Sole&amp;Ankle</h1>
-					</a>
-					<nav>
+				<div className="px-8 border-b border-gray-300 py-4 flex items-baseline">
+					<div className="flex-1">
+						<a href="/" className="">
+							<h1 className="text-2xl font-bold">Sole&amp;Ankle</h1>
+						</a>
+					</div>
+					<nav className="flex gap-8 mx-8">
 						<a
 							href="/sale"
 							className="text-sm uppercase text-blue-700 font-medium"
@@ -112,14 +163,15 @@ export default function Page() {
 							Collections
 						</a>
 					</nav>
+					<div className="flex-1"></div>
 				</div>
 			</header>
 			<div className="py-16 px-8">
-				<div>
-					<div>
-						<header>
+				<div className="flex flex-row-reverse gap-8 items-baseline">
+					<div className="flex-1">
+						<header className="flex justify-between items-baseline">
 							<h2 className="text-2xl font-medium">Running</h2>
-							<label htmlFor="">
+							<label className="flex items-center">
 								<span className="text-gray-700 mr-4">Sort</span>
 								<div className="relative">
 									<select className="opacity-0 absolute inset-0 w-full h-full cursor-pointer">
@@ -134,9 +186,11 @@ export default function Page() {
 							</label>
 						</header>
 						<span className="block h-8"></span>
-						<div>{SHOES.map(Shoe)}</div>
+						<div className="flex flex-wrap gap-8 justify-between">
+							{SHOES.map(Shoe)}
+						</div>
 					</div>
-					<div>
+					<div className="basis-60">
 						<nav className="flex text-sm">
 							<div>
 								<a
