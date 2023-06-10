@@ -33,6 +33,16 @@ cd my_app
 flutter run
 ```
 
+### Platform Folders and Files
+
+Platform project folders can be recreated with the following command:
+
+```
+flutter create .
+flutter create --platforms=ios .
+flutter create --platforms=android,ios .
+```
+
 ### Deploying to an iOS Device
 
 https://docs.flutter.dev/get-started/install/macos#deploy-to-ios-devices
