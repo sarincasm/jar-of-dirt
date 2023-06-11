@@ -1,7 +1,7 @@
-import 'package:feathers/creator.dart';
-import 'package:feathers/data.dart';
-// import 'package:feathers/splash.dart';
 import 'package:flutter/material.dart';
+
+import 'package:feathers/creator.dart';
+import 'package:feathers/splash.dart';
 
 import 'data_manager.dart';
 
@@ -19,33 +19,35 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   final rootState = RootState();
 
-  final Creator creator = Creator(
-      creatorId: '5936',
-      lang: 'en',
-      creatorName: 'Her Football Hub',
-      creatorImageUrl:
-          'https://filebucket.onefootball.com/2023/5/1684696621150-blob',
-      followerCount: 130119);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: CreatorProfile(
-          creator: creator,
-          onClickFollowButton: () {
-            setState(() {
-              rootState.toggleFollow(creator.creatorId);
-            });
+        body: FutureBuilder(
+          future: rootState.getCreatorsList(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final creator = snapshot.data!.creators[0];
+              return CreatorProfile(
+                creator: creator,
+                onClickFollowButton: () {
+                  setState(() {
+                    rootState.toggleFollow(creator.creatorId);
+                  });
+                },
+                onClickNotificationButton: () {
+                  setState(() {
+                    rootState.toggleGetNotified(creator.creatorId);
+                  });
+                },
+                isFollowing: creator.isFollowing(rootState.user),
+                isGettingNotified: creator.isGetNotified(rootState.user),
+              );
+            } else {
+              return const Splash();
+            }
           },
-          onClickNotificationButton: () {
-            setState(() {
-              rootState.toggleGetNotified(creator.creatorId);
-            });
-          },
-          isFollowing: creator.isFollowing(rootState.user),
-          isGettingNotified: creator.isGetNotified(rootState.user),
         ),
       ),
     );

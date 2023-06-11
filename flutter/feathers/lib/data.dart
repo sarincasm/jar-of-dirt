@@ -37,11 +37,26 @@ class Creator {
         .notificationsOn;
   }
 
+  Creator.fromJson(Map<String, dynamic> json)
+      : creatorId = json['creatorId'],
+        creatorName = json['creatorName'],
+        creatorImageUrl = json['creatorImageUrl'],
+        followerCount = json['followerCount'],
+        lang = json['lang'];
+
   Creator({
     required this.creatorId,
     required this.creatorName,
     required this.creatorImageUrl,
     required this.followerCount,
     required this.lang,
+  });
+}
+
+class CreatorsList {
+  final List<Creator> creators;
+
+  CreatorsList({
+    required this.creators,
   });
 }
