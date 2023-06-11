@@ -5,14 +5,27 @@ import 'package:flutter/material.dart';
 
 import 'data.dart';
 
+const actionRowColor = Colors.white;
+const actionRowColorInverted = Colors.black87;
+
 class CreatorProfile extends StatelessWidget {
   final Creator creator;
+  final bool isFollowing;
+  final bool isGettingNotified;
+  final Function onClickFollowButton;
+  final Function onClickNotificationButton;
 
-  const CreatorProfile({super.key, required this.creator});
+  const CreatorProfile({
+    super.key,
+    required this.creator,
+    required this.isFollowing,
+    required this.isGettingNotified,
+    required this.onClickFollowButton,
+    required this.onClickNotificationButton,
+  });
 
   @override
   Widget build(BuildContext context) {
-    const actionRowColor = Colors.white;
     final creatorName = creator.creatorName;
     // var backgroundColor =
     //     (const HSLColor.fromAHSL(1.0, 61.1, .948, .547)).toColor();
@@ -84,52 +97,14 @@ class CreatorProfile extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              OutlinedButton(
-                                onPressed: () {},
-                                style: OutlinedButton.styleFrom(
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(45),
-                                      bottomRight: Radius.circular(15),
-                                      topLeft: Radius.circular(15),
-                                      bottomLeft: Radius.circular(45),
-                                    ),
-                                  ),
-                                  side: const BorderSide(
-                                    color: actionRowColor,
-                                    width: 0.5,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Follow'.toUpperCase(),
-                                    style: const TextStyle(
-                                      color: actionRowColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
+                              FollowButton(
+                                onPressed: onClickFollowButton,
+                                isActive: isFollowing,
                               ),
-                              OutlinedButton(
-                                onPressed: () {},
-                                style: OutlinedButton.styleFrom(
-                                  shape: const CircleBorder(),
-                                  side: const BorderSide(
-                                    color: actionRowColor,
-                                    width: 0.5,
-                                    style: BorderStyle.solid,
-                                  ),
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(
-                                    Icons.notification_add_outlined,
-                                    color: actionRowColor,
-                                    size: 30,
-                                  ),
-                                ),
+                              GetNotifiedButton(
+                                onPressed: onClickNotificationButton,
+                                isVisible: isFollowing,
+                                isActive: isGettingNotified,
                               ),
                             ],
                           ),
@@ -149,5 +124,103 @@ class CreatorProfile extends StatelessWidget {
             ),
           ],
         ));
+  }
+}
+
+class GetNotifiedButton extends StatelessWidget {
+  const GetNotifiedButton({
+    super.key,
+    required this.isVisible,
+    required this.isActive,
+    required this.onPressed,
+  });
+
+  final bool isVisible;
+  final bool isActive;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final icon =
+        isActive ? Icons.notifications_active : Icons.notification_add_outlined;
+    final backgroundColor = isActive ? actionRowColor : Colors.transparent;
+    final textColor = isActive ? actionRowColorInverted : actionRowColor;
+
+    if (!isVisible) {
+      return Container();
+    }
+
+    return OutlinedButton(
+      onPressed: () {
+        onPressed();
+      },
+      style: OutlinedButton.styleFrom(
+        backgroundColor: backgroundColor,
+        shape: const CircleBorder(),
+        side: const BorderSide(
+          color: actionRowColor,
+          width: 0.5,
+          style: BorderStyle.solid,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Icon(
+          icon,
+          color: textColor,
+          size: 30,
+        ),
+      ),
+    );
+  }
+}
+
+class FollowButton extends StatelessWidget {
+  const FollowButton({
+    super.key,
+    required this.onPressed,
+    required this.isActive,
+  });
+
+  final Function onPressed;
+  final bool isActive;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = isActive ? 'Following' : 'Follow';
+    final backgroundColor = isActive ? actionRowColor : Colors.transparent;
+    final textColor = isActive ? actionRowColorInverted : actionRowColor;
+
+    return OutlinedButton(
+      onPressed: () {
+        onPressed();
+      },
+      style: OutlinedButton.styleFrom(
+        backgroundColor: backgroundColor,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(45),
+            bottomRight: Radius.circular(15),
+            topLeft: Radius.circular(15),
+            bottomLeft: Radius.circular(45),
+          ),
+        ),
+        side: const BorderSide(
+          color: actionRowColor,
+          width: 0.5,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          text.toUpperCase(),
+          style: TextStyle(
+            color: textColor,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
   }
 }
