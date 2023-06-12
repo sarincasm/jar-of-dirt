@@ -4,6 +4,9 @@ import 'package:http/http.dart' as http;
 import 'data.dart';
 
 class RootState {
+  int navigationIndex = 0;
+  String showCreatorId = '0';
+
   User user = User(
     following: List.empty(growable: true),
   );
@@ -13,6 +16,12 @@ class RootState {
   );
 
   static const url = 'http://localhost:3000';
+
+  getCreator(String creatorId) {
+    return creatorsList.creators.firstWhere(
+      (element) => element.creatorId == creatorId,
+    );
+  }
 
   Future<CreatorsList> getCreatorsList() async {
     if (creatorsList.creators.isEmpty) {
