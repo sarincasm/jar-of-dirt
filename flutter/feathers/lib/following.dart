@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:feathers/content.dart';
+import 'package:feathers/data.dart';
 
 class Following extends StatelessWidget {
-  const Following({super.key});
+  final List<ContentSummary> contentSummaries;
+  const Following({
+    super.key,
+    required this.contentSummaries,
+  });
 
   static const following = ['hi'];
 
@@ -15,8 +20,8 @@ class Following extends StatelessWidget {
     return Container(
       color: backgroundColor,
       child: ListView(
-        children: const [
-          Padding(
+        children: [
+          const Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
               'Following',
@@ -26,7 +31,10 @@ class Following extends StatelessWidget {
               ),
             ),
           ),
-          FollowingContent(following: following),
+          for (var contentSummary in contentSummaries)
+            ContentCard(
+              contentSummary: contentSummary,
+            ),
         ],
       ),
     );

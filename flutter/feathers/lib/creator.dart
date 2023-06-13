@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 
 import 'data.dart';
 
-const actionRowColor = Colors.white;
-const actionRowColorInverted = Colors.black87;
+const defaultActionRowColor = Colors.white;
+const defaultActionRowColorInverted = Colors.black87;
+
+enum FollowButtonSize { small, medium }
 
 class CreatorProfile extends StatelessWidget {
   final Creator creator;
@@ -156,6 +158,8 @@ class GetNotifiedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var actionRowColor = defaultActionRowColor;
+    var actionRowColorInverted = defaultActionRowColorInverted;
     final icon =
         isActive ? Icons.notifications_active : Icons.notification_add_outlined;
     final backgroundColor = isActive ? actionRowColor : Colors.transparent;
@@ -172,7 +176,7 @@ class GetNotifiedButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         backgroundColor: backgroundColor,
         shape: const CircleBorder(),
-        side: const BorderSide(
+        side: BorderSide(
           color: actionRowColor,
           width: 0.5,
           style: BorderStyle.solid,
@@ -195,16 +199,31 @@ class FollowButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.isActive,
+    this.color,
+    this.invertedColor,
+    this.size,
   });
 
   final Function onPressed;
   final bool isActive;
+  final Color? color;
+  final Color? invertedColor;
+  final FollowButtonSize? size;
 
   @override
   Widget build(BuildContext context) {
+    var actionRowColor = color ?? defaultActionRowColor;
+    var actionRowColorInverted = invertedColor ?? defaultActionRowColorInverted;
     final text = isActive ? 'Following' : 'Follow';
     final backgroundColor = isActive ? actionRowColor : Colors.transparent;
     final textColor = isActive ? actionRowColorInverted : actionRowColor;
+
+    var fontSize = 20.0;
+    var padding = 8.0;
+    if (size == FollowButtonSize.small) {
+      fontSize = 12.0;
+      padding = 1.0;
+    }
 
     return OutlinedButton(
       onPressed: () {
@@ -220,18 +239,18 @@ class FollowButton extends StatelessWidget {
             bottomLeft: Radius.circular(45),
           ),
         ),
-        side: const BorderSide(
+        side: BorderSide(
           color: actionRowColor,
           width: 0.5,
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(padding),
         child: Text(
           text.toUpperCase(),
           style: TextStyle(
             color: textColor,
-            fontSize: 20,
+            fontSize: fontSize,
             fontWeight: FontWeight.bold,
           ),
         ),

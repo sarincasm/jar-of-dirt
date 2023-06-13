@@ -37,6 +37,7 @@ class _MainAppState extends State<MainApp> {
             setState(() {
               rootState.navigationIndex = index;
               rootState.showCreatorId = '0';
+              rootState.retainDiscoveryState = false;
             });
           },
           selectedItemColor: Colors.black,
@@ -89,16 +90,54 @@ class _MainAppState extends State<MainApp> {
                     homeSections: rootState.homeSections,
                   );
                 case 1:
-                  return const Following();
+                  {
+                    var contentSummaries =
+                        rootState.getFollowingContentSummaries();
+
+                    if (contentSummaries.isEmpty ||
+                        rootState.retainDiscoveryState) {
+                      return Discover(
+                        variant: Variant.following,
+                        creatorsList: snapshot.data!,
+                        user: rootState.user,
+                        onClickCreator: (creatorId) async {
+                          setState(() {
+                            rootState.showCreatorId = creatorId;
+                          });
+                          await rootState
+                              .ensureCreatorContentSummaries(creatorId);
+                          setState(() {});
+                        },
+                        onClickFollowButton: (creatorId) {
+                          setState(() {
+                            rootState.retainDiscoveryState = true;
+                            rootState.toggleFollow(creatorId);
+                          });
+                        },
+                      );
+                    } else {
+                      return Following(
+                        contentSummaries:
+                            rootState.getFollowingContentSummaries(),
+                      );
+                    }
+                  }
+
                 case 2:
                   return Discover(
                     creatorsList: snapshot.data!,
+                    user: rootState.user,
                     onClickCreator: (creatorId) async {
                       setState(() {
                         rootState.showCreatorId = creatorId;
                       });
                       await rootState.ensureCreatorContentSummaries(creatorId);
                       setState(() {});
+                    },
+                    onClickFollowButton: (creatorId) {
+                      setState(() {
+                        rootState.toggleFollow(creatorId);
+                      });
                     },
                   );
                 default:

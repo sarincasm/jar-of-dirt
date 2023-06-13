@@ -6,6 +6,8 @@ import 'data.dart';
 class RootState {
   int navigationIndex = 0;
   String showCreatorId = '0';
+  // in the following tab, we want to retain the discovery state while the user is selcting multiple creators to follow
+  bool retainDiscoveryState = false;
 
   User user = User(
     following: List.empty(growable: true),
@@ -149,5 +151,20 @@ class RootState {
     if (creator.contentSummaries.isEmpty) {
       await fetchCreatorSection(creatorId);
     }
+  }
+
+  getFollowingContentSummaries() {
+    List<ContentSummary> contentSummaries = List.empty(growable: true);
+
+    for (var creator in creatorsList.creators) {
+      if (creator.isFollowing(user)) {
+        ensureCreatorContentSummaries(creator.creatorId);
+        for (var item in creator.contentSummaries) {
+          contentSummaries.add(item);
+        }
+      }
+    }
+
+    return contentSummaries;
   }
 }
