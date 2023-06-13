@@ -76,10 +76,19 @@ class ContentSummary {
         imageUrl = json['imageUrl'];
 }
 
-class ContentList {
+class HomeSection {
+  final String title;
+  final String subtitle;
   final List<ContentSummary> contentSummaries;
 
-  ContentList({
+  HomeSection({
+    required this.title,
+    required this.subtitle,
     required this.contentSummaries,
   });
+
+  HomeSection.fromJson(Map<String, dynamic> json)
+      : title = json['title'],
+        subtitle = json['subtitle'],
+        contentSummaries = List.empty(growable: true);
 }

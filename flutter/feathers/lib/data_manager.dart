@@ -15,21 +15,7 @@ class RootState {
     creators: List.empty(growable: true),
   );
 
-  ContentList featuredList = ContentList(
-    contentSummaries: List.empty(growable: true),
-  );
-
-  ContentList favoriteTeam1List = ContentList(
-    contentSummaries: List.empty(growable: true),
-  );
-
-  ContentList favoriteTeam2List = ContentList(
-    contentSummaries: List.empty(growable: true),
-  );
-
-  ContentList favoritePlayer1List = ContentList(
-    contentSummaries: List.empty(growable: true),
-  );
+  List<HomeSection> homeSections = [];
 
   static const url = 'http://localhost:3000';
 
@@ -56,27 +42,14 @@ class RootState {
         creatorsList.creators.add(Creator.fromJson(creator));
       }
 
-      var featuredContent = json['featured_content'];
-      for (var content in featuredContent) {
-        featuredList.contentSummaries.add(ContentSummary.fromJson(content));
-      }
-
-      var favoriteTeam1Content = json['favoriteTeam1_content'];
-      for (var content in favoriteTeam1Content) {
-        favoriteTeam1List.contentSummaries
-            .add(ContentSummary.fromJson(content));
-      }
-
-      var favoriteTeam2Content = json['favoriteTeam2_content'];
-      for (var content in favoriteTeam2Content) {
-        favoriteTeam2List.contentSummaries
-            .add(ContentSummary.fromJson(content));
-      }
-
-      var favoritePlayer1Content = json['favoritePlayer1_content'];
-      for (var content in favoritePlayer1Content) {
-        favoritePlayer1List.contentSummaries
-            .add(ContentSummary.fromJson(content));
+      var sections = json['sections'];
+      for (var section in sections) {
+        var sectionMetaData = HomeSection.fromJson(section);
+        var content = section['content'];
+        for (var item in content) {
+          sectionMetaData.contentSummaries.add(ContentSummary.fromJson(item));
+        }
+        homeSections.add(sectionMetaData);
       }
     } else {
       throw Exception('Failed to load data');

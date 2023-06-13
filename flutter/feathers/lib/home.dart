@@ -5,17 +5,11 @@ import 'package:feathers/content.dart';
 import 'data.dart';
 
 class Home extends StatelessWidget {
-  final ContentList featuredList;
-  final ContentList favoriteTeam1List;
-  final ContentList favoriteTeam2List;
-  final ContentList favoritePlayer1List;
+  final List<HomeSection> homeSections;
 
   const Home({
     super.key,
-    required this.featuredList,
-    required this.favoriteTeam1List,
-    required this.favoriteTeam2List,
-    required this.favoritePlayer1List,
+    required this.homeSections,
   });
 
   @override
@@ -24,90 +18,78 @@ class Home extends StatelessWidget {
         (const HSLColor.fromAHSL(1.0, 206.5, .607, .89)).toColor();
 
     return Container(
-      color: backgroundColor,
-      child: ListView(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Home',
-              style: TextStyle(
-                fontSize: 60,
-                fontWeight: FontWeight.bold,
+        color: backgroundColor,
+        child: ListView.builder(
+          itemCount: homeSections.length + 1,
+          itemBuilder: (context, index) {
+            if (index == 0) {
+              return const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Home',
+                  style: TextStyle(
+                    fontSize: 60,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              );
+            }
+
+            var section = homeSections[index - 1];
+            return Padding(
+              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+              child: ContentSection(
+                sectionName: section.title,
+                sectionSubTitle: section.subtitle,
+                contentSummaries: section.contentSummaries,
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-            child: ContentSection(
-              sectionName: 'Featured',
-              contentList: featuredList,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-            child: ContentSection(
-              sectionName: 'Favorite Team 1',
-              contentList: favoriteTeam1List,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-            child: ContentSection(
-              sectionName: 'Favorite Team 2',
-              contentList: favoriteTeam2List,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-            child: ContentSection(
-              sectionName: 'Favorite Player 1',
-              contentList: favoritePlayer1List,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-            child: ContentSection(sectionName: 'Following'),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-            child: ContentSection(sectionName: 'Following 1'),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-            child: ContentSection(sectionName: 'Following 2'),
-          ),
-        ],
-      ),
-    );
+            );
+          },
+        ));
   }
 }
 
 class ContentSection extends StatelessWidget {
   final String sectionName;
-  final ContentList? contentList;
+  final String sectionSubTitle;
+  final List<ContentSummary> contentSummaries;
 
   const ContentSection({
     super.key,
     required this.sectionName,
-    this.contentList,
+    required this.sectionSubTitle,
+    required this.contentSummaries,
   });
 
   @override
   Widget build(BuildContext context) {
-    var itemCount = contentList?.contentSummaries.length ?? 4;
+    var itemCount = contentSummaries.length;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 16.0),
-          child: Text(
-            sectionName,
-            style: const TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                sectionName,
+                style: const TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 2.0),
+                child: Text(
+                  sectionSubTitle,
+                  style: const TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
         Padding(
@@ -124,8 +106,8 @@ class ContentSection extends StatelessWidget {
                 }
                 return Padding(
                   padding: EdgeInsets.only(left: 16.0, right: rightPadding),
-                  child: WideContentCard(
-                      contentSummary: contentList?.contentSummaries[index]),
+                  child:
+                      WideContentCard(contentSummary: contentSummaries[index]),
                 );
               },
             ),
