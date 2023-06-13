@@ -15,6 +15,22 @@ class RootState {
     creators: List.empty(growable: true),
   );
 
+  ContentList featuredList = ContentList(
+    contentSummaries: List.empty(growable: true),
+  );
+
+  ContentList favoriteTeam1List = ContentList(
+    contentSummaries: List.empty(growable: true),
+  );
+
+  ContentList favoriteTeam2List = ContentList(
+    contentSummaries: List.empty(growable: true),
+  );
+
+  ContentList favoritePlayer1List = ContentList(
+    contentSummaries: List.empty(growable: true),
+  );
+
   static const url = 'http://localhost:3000';
 
   getCreator(String creatorId) {
@@ -32,10 +48,35 @@ class RootState {
 
   fetchData() async {
     var response = await http.get(Uri.parse('$url/'));
+
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
-      for (var creator in json) {
+      var creators = json['creators'];
+      for (var creator in creators) {
         creatorsList.creators.add(Creator.fromJson(creator));
+      }
+
+      var featuredContent = json['featured_content'];
+      for (var content in featuredContent) {
+        featuredList.contentSummaries.add(ContentSummary.fromJson(content));
+      }
+
+      var favoriteTeam1Content = json['favoriteTeam1_content'];
+      for (var content in favoriteTeam1Content) {
+        favoriteTeam1List.contentSummaries
+            .add(ContentSummary.fromJson(content));
+      }
+
+      var favoriteTeam2Content = json['favoriteTeam2_content'];
+      for (var content in favoriteTeam2Content) {
+        favoriteTeam2List.contentSummaries
+            .add(ContentSummary.fromJson(content));
+      }
+
+      var favoritePlayer1Content = json['favoritePlayer1_content'];
+      for (var content in favoritePlayer1Content) {
+        favoritePlayer1List.contentSummaries
+            .add(ContentSummary.fromJson(content));
       }
     } else {
       throw Exception('Failed to load data');

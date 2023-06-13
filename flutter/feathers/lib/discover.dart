@@ -1,6 +1,7 @@
-import 'package:feathers/data.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'package:feathers/data.dart';
 
 class Discover extends StatelessWidget {
   final CreatorsList creatorsList;
@@ -61,33 +62,37 @@ class CreatorSummaryCard extends StatelessWidget {
       },
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 75,
-            backgroundImage: Image.network(creator.creatorImageUrl).image,
+          Expanded(
+            child: CircleAvatar(
+              radius: 75,
+              backgroundImage: Image.network(creator.creatorImageUrl).image,
+            ),
           ),
           const SizedBox(
             width: 15,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                creator.creatorName,
-                style: const TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  creator.creatorName,
+                  style: const TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                '${NumberFormat.compact().format(creator.followerCount)} Followers',
-                style: const TextStyle(
-                  fontSize: 16,
+                const SizedBox(
+                  height: 10,
                 ),
-              ),
-            ],
+                Text(
+                  '${NumberFormat.compact().format(creator.followerCount)} Followers',
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

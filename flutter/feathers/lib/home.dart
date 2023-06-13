@@ -2,8 +2,21 @@ import 'package:flutter/material.dart';
 
 import 'package:feathers/content.dart';
 
+import 'data.dart';
+
 class Home extends StatelessWidget {
-  const Home({super.key});
+  final ContentList featuredList;
+  final ContentList favoriteTeam1List;
+  final ContentList favoriteTeam2List;
+  final ContentList favoritePlayer1List;
+
+  const Home({
+    super.key,
+    required this.featuredList,
+    required this.favoriteTeam1List,
+    required this.favoriteTeam2List,
+    required this.favoritePlayer1List,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +26,8 @@ class Home extends StatelessWidget {
     return Container(
       color: backgroundColor,
       child: ListView(
-        children: const [
-          Padding(
+        children: [
+          const Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
               'Home',
@@ -25,30 +38,42 @@ class Home extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-            child: ContentSection(sectionName: 'Featured'),
+            padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+            child: ContentSection(
+              sectionName: 'Featured',
+              contentList: featuredList,
+            ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-            child: ContentSection(sectionName: 'Favorite Team'),
+            padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+            child: ContentSection(
+              sectionName: 'Favorite Team 1',
+              contentList: favoriteTeam1List,
+            ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-            child: ContentSection(sectionName: 'Favorite Player 1'),
+            padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+            child: ContentSection(
+              sectionName: 'Favorite Team 2',
+              contentList: favoriteTeam2List,
+            ),
           ),
           Padding(
+            padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+            child: ContentSection(
+              sectionName: 'Favorite Player 1',
+              contentList: favoritePlayer1List,
+            ),
+          ),
+          const Padding(
             padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
             child: ContentSection(sectionName: 'Following'),
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-            child: ContentSection(sectionName: 'Favorite Player 2'),
-          ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
             child: ContentSection(sectionName: 'Following 1'),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
             child: ContentSection(sectionName: 'Following 2'),
           ),
@@ -60,12 +85,17 @@ class Home extends StatelessWidget {
 
 class ContentSection extends StatelessWidget {
   final String sectionName;
+  final ContentList? contentList;
 
-  const ContentSection({super.key, required this.sectionName});
+  const ContentSection({
+    super.key,
+    required this.sectionName,
+    this.contentList,
+  });
 
   @override
   Widget build(BuildContext context) {
-    var itemCount = 4;
+    var itemCount = contentList?.contentSummaries.length ?? 4;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +124,8 @@ class ContentSection extends StatelessWidget {
                 }
                 return Padding(
                   padding: EdgeInsets.only(left: 16.0, right: rightPadding),
-                  child: const WideContentCard(),
+                  child: WideContentCard(
+                      contentSummary: contentList?.contentSummaries[index]),
                 );
               },
             ),

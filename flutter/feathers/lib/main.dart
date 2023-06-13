@@ -85,7 +85,12 @@ class _MainAppState extends State<MainApp> {
 
               switch (rootState.navigationIndex) {
                 case 0:
-                  return const Home();
+                  return Home(
+                    featuredList: rootState.featuredList,
+                    favoriteTeam1List: rootState.favoriteTeam1List,
+                    favoriteTeam2List: rootState.favoriteTeam2List,
+                    favoritePlayer1List: rootState.favoritePlayer1List,
+                  );
                 case 1:
                   return const Following();
                 case 2:
@@ -98,7 +103,12 @@ class _MainAppState extends State<MainApp> {
                     },
                   );
                 default:
-                  return const Home();
+                  return Home(
+                    featuredList: rootState.featuredList,
+                    favoriteTeam1List: rootState.favoriteTeam1List,
+                    favoriteTeam2List: rootState.favoriteTeam2List,
+                    favoritePlayer1List: rootState.favoritePlayer1List,
+                  );
               }
             } else {
               return const Splash();

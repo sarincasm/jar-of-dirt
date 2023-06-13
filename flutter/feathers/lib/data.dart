@@ -60,3 +60,26 @@ class CreatorsList {
     required this.creators,
   });
 }
+
+class ContentSummary {
+  final String id;
+  final String title;
+  final String time;
+  final String creatorId;
+  final String imageUrl;
+
+  ContentSummary.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        title = json['title'],
+        time = json['time'],
+        creatorId = json['creatorId'],
+        imageUrl = json['imageUrl'];
+}
+
+class ContentList {
+  final List<ContentSummary> contentSummaries;
+
+  ContentList({
+    required this.contentSummaries,
+  });
+}
