@@ -23,6 +23,8 @@ class Creator {
   final int followerCount;
   final String lang;
 
+  final List<ContentSummary> contentSummaries = List.empty(growable: true);
+
   bool isFollowing(User user) {
     return user.following.any((element) => element.creatorId == creatorId);
   }
@@ -64,14 +66,19 @@ class CreatorsList {
 class ContentSummary {
   final String id;
   final String title;
-  final String time;
   final String creatorId;
   final String imageUrl;
+
+  ContentSummary({
+    required this.id,
+    required this.title,
+    required this.creatorId,
+    required this.imageUrl,
+  });
 
   ContentSummary.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         title = json['title'],
-        time = json['time'],
         creatorId = json['creatorId'],
         imageUrl = json['imageUrl'];
 }

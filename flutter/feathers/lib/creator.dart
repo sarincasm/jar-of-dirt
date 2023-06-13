@@ -116,9 +116,24 @@ class CreatorProfile extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 60,
+              height: 5,
             ),
-            const ContentCard(),
+            Text(
+              textAlign: TextAlign.center,
+              'Latest From ${creator.creatorName}',
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            for (var contentSummary in creator.contentSummaries)
+              ContentCard(
+                contentSummary: contentSummary,
+              ),
             const SizedBox(
               height: 30,
             ),

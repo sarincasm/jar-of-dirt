@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:feathers/data.dart';
 
 class ContentCard extends StatelessWidget {
-  const ContentCard({super.key});
+  final ContentSummary? contentSummary;
+  const ContentCard({super.key, this.contentSummary});
 
   @override
   Widget build(BuildContext context) {
-    const description =
+    var title = contentSummary?.title ??
         'An amazing description of the content that is being displayed.';
+    var imageUrl = contentSummary?.imageUrl ?? '';
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Container(
@@ -16,17 +18,31 @@ class ContentCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
-              image: const AssetImage('assets/splash.jpeg'),
+              image: FadeInImage.assetNetwork(
+                fadeInDuration: const Duration(milliseconds: 500),
+                image: imageUrl,
+                placeholder: 'assets/splash.jpeg',
+              ).image,
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
                 Colors.black.withOpacity(0.3),
                 BlendMode.darken,
               )),
         ),
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(description),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ],
         ),
       ),

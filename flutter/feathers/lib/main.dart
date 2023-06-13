@@ -93,10 +93,12 @@ class _MainAppState extends State<MainApp> {
                 case 2:
                   return Discover(
                     creatorsList: snapshot.data!,
-                    onClickCreator: (creatorId) {
+                    onClickCreator: (creatorId) async {
                       setState(() {
                         rootState.showCreatorId = creatorId;
                       });
+                      await rootState.ensureCreatorContentSummaries(creatorId);
+                      setState(() {});
                     },
                   );
                 default:
