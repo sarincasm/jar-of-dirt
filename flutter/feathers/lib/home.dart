@@ -6,10 +6,12 @@ import 'data.dart';
 
 class Home extends StatelessWidget {
   final List<HomeSection> homeSections;
+  final Function onClickCreator;
 
   const Home({
     super.key,
     required this.homeSections,
+    required this.onClickCreator,
   });
 
   @override
@@ -42,6 +44,7 @@ class Home extends StatelessWidget {
                 sectionName: section.title,
                 sectionSubTitle: section.subtitle,
                 contentSummaries: section.contentSummaries,
+                onClickCreator: onClickCreator,
               ),
             );
           },
@@ -53,12 +56,14 @@ class ContentSection extends StatelessWidget {
   final String sectionName;
   final String sectionSubTitle;
   final List<ContentSummary> contentSummaries;
+  final Function onClickCreator;
 
   const ContentSection({
     super.key,
     required this.sectionName,
     required this.sectionSubTitle,
     required this.contentSummaries,
+    required this.onClickCreator,
   });
 
   @override
@@ -106,8 +111,10 @@ class ContentSection extends StatelessWidget {
                 }
                 return Padding(
                   padding: EdgeInsets.only(left: 16.0, right: rightPadding),
-                  child:
-                      WideContentCard(contentSummary: contentSummaries[index]),
+                  child: WideContentCard(
+                    contentSummary: contentSummaries[index],
+                    onClickCreator: onClickCreator,
+                  ),
                 );
               },
             ),

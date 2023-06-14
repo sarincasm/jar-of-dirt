@@ -88,6 +88,13 @@ class _MainAppState extends State<MainApp> {
                 case 0:
                   return Home(
                     homeSections: rootState.homeSections,
+                    onClickCreator: (creatorId) async {
+                      setState(() {
+                        rootState.showCreatorId = creatorId;
+                      });
+                      await rootState.ensureCreatorContentSummaries(creatorId);
+                      setState(() {});
+                    },
                   );
                 case 1:
                   {
@@ -98,7 +105,7 @@ class _MainAppState extends State<MainApp> {
                         rootState.retainDiscoveryState) {
                       return Discover(
                         variant: Variant.following,
-                        creatorsList: snapshot.data!,
+                        creatorsList: rootState.creatorsList,
                         user: rootState.user,
                         onClickCreator: (creatorId) async {
                           setState(() {
@@ -119,13 +126,21 @@ class _MainAppState extends State<MainApp> {
                       return Following(
                         contentSummaries:
                             rootState.getFollowingContentSummaries(),
+                        onClickCreator: (creatorId) async {
+                          setState(() {
+                            rootState.showCreatorId = creatorId;
+                          });
+                          await rootState
+                              .ensureCreatorContentSummaries(creatorId);
+                          setState(() {});
+                        },
                       );
                     }
                   }
 
                 case 2:
                   return Discover(
-                    creatorsList: snapshot.data!,
+                    creatorsList: rootState.creatorsList,
                     user: rootState.user,
                     onClickCreator: (creatorId) async {
                       setState(() {
@@ -143,6 +158,13 @@ class _MainAppState extends State<MainApp> {
                 default:
                   return Home(
                     homeSections: rootState.homeSections,
+                    onClickCreator: (creatorId) async {
+                      setState(() {
+                        rootState.showCreatorId = creatorId;
+                      });
+                      await rootState.ensureCreatorContentSummaries(creatorId);
+                      setState(() {});
+                    },
                   );
               }
             } else {

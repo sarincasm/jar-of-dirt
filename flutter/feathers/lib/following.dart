@@ -5,12 +5,12 @@ import 'package:feathers/data.dart';
 
 class Following extends StatelessWidget {
   final List<ContentSummary> contentSummaries;
+  final Function onClickCreator;
   const Following({
     super.key,
     required this.contentSummaries,
+    required this.onClickCreator,
   });
-
-  static const following = ['hi'];
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +34,8 @@ class Following extends StatelessWidget {
           for (var contentSummary in contentSummaries)
             ContentCard(
               contentSummary: contentSummary,
+              showCreator: true,
+              onClickCreator: onClickCreator,
             ),
         ],
       ),

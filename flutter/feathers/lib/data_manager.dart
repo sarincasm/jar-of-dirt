@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:collection/collection.dart';
 
 import 'data.dart';
 
@@ -22,7 +23,7 @@ class RootState {
   static const url = 'http://localhost:3000';
 
   getCreator(String creatorId) {
-    return creatorsList.creators.firstWhere(
+    return creatorsList.creators.firstWhereOrNull(
       (element) => element.creatorId == creatorId,
     );
   }
@@ -49,6 +50,9 @@ class RootState {
         var sectionMetaData = HomeSection.fromJson(section);
         var content = section['content'];
         for (var item in content) {
+          item['creatorImageUrl'] = getCreator(item['creatorId'])
+                  ?.creatorImageUrl ??
+              'https://images.onefootball.com/blogs_logos/circle_onefootball.png';
           sectionMetaData.contentSummaries.add(ContentSummary.fromJson(item));
         }
         homeSections.add(sectionMetaData);
@@ -65,7 +69,9 @@ class RootState {
       id: '0',
       title: 'Fetching...',
       creatorId: creator.creatorId,
+      creatorImageUrl: creator.creatorImageUrl,
       imageUrl: creator.creatorImageUrl,
+      time: '',
     );
 
     HomeSection homeSection = HomeSection(
@@ -99,6 +105,7 @@ class RootState {
       creator.contentSummaries.clear();
 
       for (var item in json) {
+        item['creatorImageUrl'] = creator.creatorImageUrl;
         creator.contentSummaries.add(ContentSummary.fromJson(item));
       }
     } else {
@@ -158,12 +165,15 @@ class RootState {
 
     for (var creator in creatorsList.creators) {
       if (creator.isFollowing(user)) {
-        ensureCreatorContentSummaries(creator.creatorId);
         for (var item in creator.contentSummaries) {
           contentSummaries.add(item);
         }
       }
     }
+
+    contentSummaries.sort(
+      (a, b) => b.time.compareTo(a.time),
+    );
 
     return contentSummaries;
   }

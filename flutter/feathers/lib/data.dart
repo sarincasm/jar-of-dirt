@@ -67,20 +67,26 @@ class ContentSummary {
   final String id;
   final String title;
   final String creatorId;
+  final String creatorImageUrl;
   final String imageUrl;
+  final String time;
 
   ContentSummary({
     required this.id,
     required this.title,
     required this.creatorId,
+    required this.creatorImageUrl,
     required this.imageUrl,
+    required this.time,
   });
 
   ContentSummary.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         title = json['title'],
         creatorId = json['creatorId'],
-        imageUrl = json['imageUrl'];
+        creatorImageUrl = json['creatorImageUrl'],
+        imageUrl = json['imageUrl'],
+        time = json['time'];
 }
 
 class HomeSection {

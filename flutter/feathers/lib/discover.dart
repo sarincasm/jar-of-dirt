@@ -6,7 +6,7 @@ import 'package:feathers/data.dart';
 
 enum Variant { following, discover }
 
-class Discover extends StatelessWidget {
+class Discover extends StatefulWidget {
   final CreatorsList creatorsList;
   final Function onClickCreator;
   final User user;
@@ -23,9 +23,29 @@ class Discover extends StatelessWidget {
   });
 
   @override
+  State<Discover> createState() => _DiscoverState();
+}
+
+class _DiscoverState extends State<Discover> {
+  late final List<Creator> creatorsNotFollowing;
+
+  @override
+  void initState() {
+    super.initState();
+    creatorsNotFollowing = widget.creatorsList.creators
+        .where((creator) => !creator.isFollowing(widget.user))
+        .toList();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var title = 'Discover';
-    if (variant == Variant.following) {
+    if (widget.variant == Variant.following) {
       title = 'Following';
     }
 
@@ -46,16 +66,16 @@ class Discover extends StatelessWidget {
               ),
             ),
             Prompt(
-              show: variant == Variant.following,
+              show: widget.variant == Variant.following,
             ),
-            for (var creator in creatorsList.creators)
+            for (var creator in creatorsNotFollowing)
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: CreatorSummaryCard(
                   creator: creator,
-                  isFollowing: creator.isFollowing(user),
-                  onTap: onClickCreator,
-                  onClickFollowButton: onClickFollowButton,
+                  isFollowing: creator.isFollowing(widget.user),
+                  onTap: widget.onClickCreator,
+                  onClickFollowButton: widget.onClickFollowButton,
                 ),
               ),
           ],
