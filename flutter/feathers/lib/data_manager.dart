@@ -39,7 +39,7 @@ class RootState {
     var response = await http.get(Uri.parse('$url/'));
 
     if (response.statusCode == 200) {
-      var json = jsonDecode(response.body);
+      var json = jsonDecode(utf8.decode(response.bodyBytes));
       var creators = json['creators'];
       for (var creator in creators) {
         creatorsList.creators.add(Creator.fromJson(creator));
@@ -100,7 +100,7 @@ class RootState {
         Uri.parse('$url/creators?creatorId=$creatorId&lang=${creator.lang}'));
 
     if (response.statusCode == 200) {
-      var json = jsonDecode(response.body);
+      var json = jsonDecode(utf8.decode(response.bodyBytes));
 
       creator.contentSummaries.clear();
 
