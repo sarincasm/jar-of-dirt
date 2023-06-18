@@ -18,6 +18,10 @@ class RootState {
     creators: List.empty(growable: true),
   );
 
+  CreatorsList creatorsImagineList = CreatorsList(
+    creators: List.empty(growable: true),
+  );
+
   List<HomeSection> homeSections = [];
 
   static const url = 'http://localhost:3000';
@@ -56,6 +60,11 @@ class RootState {
           sectionMetaData.contentSummaries.add(ContentSummary.fromJson(item));
         }
         homeSections.add(sectionMetaData);
+      }
+
+      var creatorsImagine = json['creatorsImagine'];
+      for (var creator in creatorsImagine) {
+        creatorsImagineList.creators.add(Creator.fromJson(creator));
       }
     } else {
       throw Exception('Failed to load data');

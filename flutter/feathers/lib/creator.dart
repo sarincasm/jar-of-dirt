@@ -137,7 +137,7 @@ class CreatorProfile extends StatelessWidget {
                 contentSummary: contentSummary,
               ),
             const SizedBox(
-              height: 30,
+              height: 90,
             ),
           ],
         ));

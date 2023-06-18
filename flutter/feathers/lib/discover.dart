@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:feathers/creator.dart';
 import 'package:feathers/data.dart';
 
-enum Variant { following, discover }
+enum Variant { following, discover, imagine }
 
 class Discover extends StatefulWidget {
   final CreatorsList creatorsList;
@@ -19,7 +19,7 @@ class Discover extends StatefulWidget {
     required this.onClickCreator,
     required this.user,
     required this.onClickFollowButton,
-    this.variant,
+    this.variant = Variant.discover,
   });
 
   @override
@@ -45,8 +45,16 @@ class _DiscoverState extends State<Discover> {
   @override
   Widget build(BuildContext context) {
     var title = 'Discover';
+    var promptText = '';
+
     if (widget.variant == Variant.following) {
       title = 'Following';
+      promptText =
+          'You are not following anyone yet. Discover something new today.';
+    } else if (widget.variant == Variant.imagine) {
+      title = 'Imagine';
+      promptText =
+          'These creators are not part of the OneFootball platform - yet. Imagine if they were.';
     }
 
     var backgroundColor =
@@ -65,9 +73,10 @@ class _DiscoverState extends State<Discover> {
                 ),
               ),
             ),
-            Prompt(
-              show: widget.variant == Variant.following,
-            ),
+            if (widget.variant != Variant.discover)
+              Prompt(
+                promptText: promptText,
+              ),
             for (var creator in creatorsNotFollowing)
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -84,25 +93,25 @@ class _DiscoverState extends State<Discover> {
 }
 
 class Prompt extends StatelessWidget {
-  final bool show;
-  const Prompt({super.key, required this.show});
+  final String promptText;
+
+  const Prompt({
+    super.key,
+    required this.promptText,
+  });
 
   @override
   Widget build(BuildContext context) {
-    if (show) {
-      return const Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Text(
-          'You are not following anyone yet. Discover something new today.',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Text(
+        promptText,
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
         ),
-      );
-    } else {
-      return Container();
-    }
+      ),
+    );
   }
 }
 

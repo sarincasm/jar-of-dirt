@@ -8,6 +8,8 @@ import 'package:feathers/splash.dart';
 
 import 'data_manager.dart';
 
+const showBottomNavigationBar = true;
+
 void main() {
   runApp(const MainApp());
 }
@@ -25,42 +27,52 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     var navigationBackgroundColor =
-        (const HSLColor.fromAHSL(1.0, 0, 0, .941)).toColor();
+        (const HSLColor.fromAHSL(0.9, 0, 0, .941)).toColor();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: navigationBackgroundColor,
-          currentIndex: rootState.navigationIndex,
-          onTap: (index) {
-            setState(() {
-              rootState.navigationIndex = index;
-              rootState.showCreatorId = '0';
-              rootState.retainDiscoveryState = false;
-            });
-          },
-          selectedItemColor: Colors.black,
-          selectedFontSize: 18,
-          unselectedItemColor: Colors.black.withOpacity(.5),
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border_outlined),
-              activeIcon: Icon(Icons.favorite),
-              label: 'Following',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.explore_outlined),
-              activeIcon: Icon(Icons.explore),
-              label: 'Discover',
-            ),
-          ],
-        ),
+        extendBody: true,
+        bottomNavigationBar: showBottomNavigationBar
+            ? BottomNavigationBar(
+                backgroundColor: navigationBackgroundColor,
+                elevation: 0,
+                currentIndex: rootState.navigationIndex,
+                onTap: (index) {
+                  setState(() {
+                    rootState.navigationIndex = index;
+                    rootState.showCreatorId = '0';
+                    rootState.retainDiscoveryState = false;
+                  });
+                },
+                selectedItemColor: Colors.black,
+                selectedFontSize: 18,
+                unselectedItemColor: Colors.black.withOpacity(.5),
+                items: [
+                  BottomNavigationBarItem(
+                    icon: const Icon(Icons.home_outlined),
+                    activeIcon: const Icon(Icons.home),
+                    label: 'Home',
+                    backgroundColor: navigationBackgroundColor,
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: Icon(Icons.favorite_border_outlined),
+                    activeIcon: Icon(Icons.favorite),
+                    label: 'Following',
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: Icon(Icons.explore_outlined),
+                    activeIcon: Icon(Icons.explore),
+                    label: 'Discover',
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: Icon(Icons.emoji_nature_outlined),
+                    activeIcon: Icon(Icons.emoji_nature),
+                    label: 'Imagine',
+                  )
+                ],
+              )
+            : null,
         body: FutureBuilder(
           future: rootState.getCreatorsList(),
           builder: (context, snapshot) {
@@ -104,6 +116,7 @@ class _MainAppState extends State<MainApp> {
                     if (contentSummaries.isEmpty ||
                         rootState.retainDiscoveryState) {
                       return Discover(
+                        key: const ValueKey('1'),
                         variant: Variant.following,
                         creatorsList: rootState.creatorsList,
                         user: rootState.user,
@@ -140,6 +153,7 @@ class _MainAppState extends State<MainApp> {
 
                 case 2:
                   return Discover(
+                    key: const ValueKey('2'),
                     creatorsList: rootState.creatorsList,
                     user: rootState.user,
                     onClickCreator: (creatorId) async {
@@ -155,6 +169,17 @@ class _MainAppState extends State<MainApp> {
                       });
                     },
                   );
+
+                case 3:
+                  return Discover(
+                    key: const ValueKey('3'),
+                    variant: Variant.imagine,
+                    creatorsList: rootState.creatorsImagineList,
+                    user: rootState.user,
+                    onClickCreator: (creatorId) async {},
+                    onClickFollowButton: (creatorId) {},
+                  );
+
                 default:
                   return Home(
                     homeSections: rootState.homeSections,
