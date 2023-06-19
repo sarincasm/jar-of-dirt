@@ -47,12 +47,12 @@ class ContentCard extends StatelessWidget {
               child: Row(
                 children: [
                   if (showCreator)
-                    GestureDetector(
-                      onTap: () {
-                        onClickCreator(contentSummary?.creatorId);
-                      },
-                      child: Expanded(
-                        flex: 0,
+                    Expanded(
+                      flex: 0,
+                      child: GestureDetector(
+                        onTap: () {
+                          onClickCreator(contentSummary?.creatorId);
+                        },
                         child: CircleAvatar(
                           radius: 20,
                           backgroundImage: NetworkImage(
