@@ -1,0 +1,5 @@
+const favoriteTeam2 = {{DATA}}
+
+module.exports = {
+  favoriteTeam2
+}

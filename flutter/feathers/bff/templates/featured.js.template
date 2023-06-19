@@ -1,0 +1,5 @@
+const featured = {{DATA}}
+
+module.exports = {
+  featured
+}
