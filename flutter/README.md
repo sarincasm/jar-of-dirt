@@ -2,7 +2,10 @@
 
 ## In this Folder
 
+-  [Feathers](feathers/)
+-  [Dart OOO](dart-ooo/)
 -  [Dirty Flutter](dirty_flutter/)
+-  [Frontend Masters - Coffee App](fem_coffee/)
 
 ## Platform Setup
 
@@ -59,6 +62,11 @@ VS Code Commands
 -  Debug: Start Debugging
 -  Flutter: Toggle Debug Painting
 -  Debug: Stop
+
+Snippets
+
+-  `stls` - `StatelessWidget`
+-  `stf` - `StatefulWidget`
 
 ## Useful Links
 
