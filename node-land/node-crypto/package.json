@@ -4,7 +4,7 @@
   "description": "Cryptography using NodeJs",
   "main": "crypto-dirt.js",
   "dependencies": {
-    "argon2": "^0.27.0"
+    "argon2": "^0.27.2"
   },
   "devDependencies": {},
   "scripts": {
