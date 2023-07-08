@@ -1875,7 +1875,7 @@ const creators = [
 		lang: 'es',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 2617094,
 	},
 	{
@@ -3099,7 +3099,7 @@ const creators = [
 		lang: 'pt',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 8115052,
 	},
 	{
@@ -3123,7 +3123,7 @@ const creators = [
 		lang: 'en',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 2361058,
 	},
 	{
@@ -3155,7 +3155,7 @@ const creators = [
 		lang: 'en',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 2807107,
 	},
 	{
@@ -3163,7 +3163,7 @@ const creators = [
 		lang: 'en',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 7329226,
 	},
 	{
@@ -3227,7 +3227,7 @@ const creators = [
 		lang: 'en',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 2978960,
 	},
 	{
@@ -3275,7 +3275,7 @@ const creators = [
 		lang: 'es',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 3922357,
 	},
 	{
@@ -3643,7 +3643,7 @@ const creators = [
 		lang: 'it',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 3090661,
 	},
 	{
@@ -3651,7 +3651,7 @@ const creators = [
 		lang: 'de',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 745825,
 	},
 	{
@@ -3699,7 +3699,7 @@ const creators = [
 		lang: 'pt',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 9817573,
 	},
 	{
@@ -3859,7 +3859,7 @@ const creators = [
 		lang: 'en',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 2030508,
 	},
 	{
@@ -3875,7 +3875,7 @@ const creators = [
 		lang: 'en',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 6664758,
 	},
 	{
@@ -3923,7 +3923,7 @@ const creators = [
 		lang: 'it',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 2514583,
 	},
 	{
@@ -4067,7 +4067,7 @@ const creators = [
 		lang: 'en',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 9127287,
 	},
 	{
@@ -4131,7 +4131,7 @@ const creators = [
 		lang: 'pt',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 8135937,
 	},
 	{
@@ -4315,7 +4315,7 @@ const creators = [
 		lang: 'en',
 		creatorName: 'OneFootball',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 4524031,
 	},
 	{
@@ -5107,7 +5107,7 @@ const creators = [
 		lang: 'fr',
 		creatorName: 'OneFootball News',
 		creatorImageUrl:
-			'https://images.onefootball.com/blogs_logos/circle_onefootball.png',
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
 		followerCount: 5117498,
 	},
 	{
@@ -6381,6 +6381,14 @@ const creators = [
 		creatorImageUrl:
 			'https://filebucket.onefootball.com/2023/6/1685959338608-blob',
 		followerCount: 2726309,
+	},
+	{
+		creatorId: '2397',
+		lang: 'en',
+		creatorName: 'OneFootball',
+		creatorImageUrl:
+			'https://filebucket.onefootball.com/2021/11/1637941169670-blob',
+		followerCount: 3462464,
 	},
 ]
 

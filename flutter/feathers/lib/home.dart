@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:feathers/content.dart';
 
-import 'data.dart';
+import 'schema.dart';
 
 class Home extends StatelessWidget {
   final List<HomeSection> homeSections;

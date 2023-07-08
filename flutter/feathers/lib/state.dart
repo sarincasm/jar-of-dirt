@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:collection/collection.dart';
 
-import 'data.dart';
+import 'schema.dart';
+
+const url = 'https://dirty-edge.vercel.app';
 
 class RootState {
   int navigationIndex = 0;
@@ -24,8 +26,6 @@ class RootState {
 
   List<HomeSection> homeSections = [];
 
-  static const url = 'http://localhost:3000';
-
   getCreator(String creatorId) {
     return creatorsList.creators.firstWhereOrNull(
       (element) => element.creatorId == creatorId,
@@ -40,7 +40,7 @@ class RootState {
   }
 
   fetchData() async {
-    var response = await http.get(Uri.parse('$url/'));
+    var response = await http.get(Uri.parse('$url/home'));
 
     if (response.statusCode == 200) {
       var json = jsonDecode(utf8.decode(response.bodyBytes));
@@ -56,7 +56,7 @@ class RootState {
         for (var item in content) {
           item['creatorImageUrl'] = getCreator(item['creatorId'])
                   ?.creatorImageUrl ??
-              'https://images.onefootball.com/blogs_logos/circle_onefootball.png';
+              'https://filebucket.onefootball.com/2021/11/1637941169670-blob';
           sectionMetaData.contentSummaries.add(ContentSummary.fromJson(item));
         }
         homeSections.add(sectionMetaData);
@@ -106,7 +106,7 @@ class RootState {
   fetchCreatorSection(creatorId) async {
     var creator = getCreator(creatorId);
     var response = await http.get(
-        Uri.parse('$url/creators?creatorId=$creatorId&lang=${creator.lang}'));
+        Uri.parse('$url/creator?creatorId=$creatorId&lang=${creator.lang}'));
 
     if (response.statusCode == 200) {
       var json = jsonDecode(utf8.decode(response.bodyBytes));

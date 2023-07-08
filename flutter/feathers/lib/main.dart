@@ -6,7 +6,7 @@ import 'package:feathers/home.dart';
 import 'package:feathers/creator.dart';
 import 'package:feathers/splash.dart';
 
-import 'data_manager.dart';
+import 'state.dart';
 
 const showBottomNavigationBar = true;
 

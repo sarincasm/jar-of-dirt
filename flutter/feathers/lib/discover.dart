@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:feathers/creator.dart';
-import 'package:feathers/data.dart';
+import 'package:feathers/schema.dart';
 
 enum Variant { following, discover, imagine }
 

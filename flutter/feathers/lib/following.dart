@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:feathers/content.dart';
-import 'package:feathers/data.dart';
+import 'package:feathers/schema.dart';
 
 class Following extends StatelessWidget {
   final List<ContentSummary> contentSummaries;

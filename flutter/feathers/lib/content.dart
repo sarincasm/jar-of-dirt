@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:feathers/data.dart';
+import 'package:feathers/schema.dart';
 
 class ContentCard extends StatelessWidget {
   final ContentSummary? contentSummary;

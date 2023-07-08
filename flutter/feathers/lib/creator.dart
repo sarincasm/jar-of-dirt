@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:feathers/content.dart';
 import 'package:flutter/material.dart';
 
-import 'data.dart';
+import 'schema.dart';
 
 const defaultActionRowColor = Colors.white;
 const defaultActionRowColorInverted = Colors.black87;
