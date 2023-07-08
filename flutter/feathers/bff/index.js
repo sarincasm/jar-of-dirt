@@ -16,7 +16,7 @@ const {favoritePlayer1} = require('./generated/favoritePlayer1')
 
 // create server
 const server = http.createServer((req, res) => {
-	if (req.url.startsWith('/creators')) {
+	if (req.url.startsWith('/creator')) {
 		return handler(req, res)
 	}
 

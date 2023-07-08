@@ -14,6 +14,22 @@ To generate icons, run:
 dart run flutter_launcher_icons
 ```
 
-## Running the BFF
+## BFF
 
-The app relies on a BFF to provide data, which must be started for the app to function correctly. To run the BFF, see [the BFF README](./bff/).
+The app relies on a BFF to provide data. This is deployed in the form of serverless functions.
+
+## Running the BFF (locally)
+
+To run the BFF locally, see [the BFF README](./bff/).
+
+## Building for Web
+
+To build for web, run:
+
+```bash
+flutter create --platforms web .
+flutter build web
+```
+
+The `build/web` folder can deployed as a static build.
+Example deployment (View with a width of ~350px for best results) : https://of-shoulders.sarincasm.com/

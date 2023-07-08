@@ -4,7 +4,8 @@ import 'package:collection/collection.dart';
 
 import 'schema.dart';
 
-const url = 'https://dirty-edge.vercel.app';
+const url = 'https://feathers-edge.vercel.app';
+// const url = 'http://localhost:3000';
 
 class RootState {
   int navigationIndex = 0;
