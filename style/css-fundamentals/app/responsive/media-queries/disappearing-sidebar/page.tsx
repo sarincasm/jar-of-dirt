@@ -71,7 +71,7 @@ function renderStarter() {
 function renderDone() {
 	return (
 		<section className="py-8 flex items-baseline gap-8">
-			<nav className="flex-1 max-w-xs bg-white py-6 px-8 rounded-tr-xl rounded-br-xl">
+			<nav className="flex-1 max-w-xs bg-white py-6 px-8 rounded-tr-xl rounded-br-xl hidden md:block">
 				<h2 className="text-2xl font-bold text-center text-gray-800 uppercase">
 					Contents
 				</h2>
@@ -100,7 +100,7 @@ function renderDone() {
 				</ul>
 			</nav>
 
-			<main className="flex-[3] bg-white py-6 px-8 rounded-tl-xl rounded-bl-xl">
+			<main className="flex-[3] bg-white py-6 px-8 rounded-xl md:rounded-tl-xl md:rounded-bl-xl md:rounded-tr-none md:rounded-br-none mx-8 md:mx-0">
 				<h1 className="text-3xl font-bold text-gray-800 my-6">
 					An Article
 				</h1>
