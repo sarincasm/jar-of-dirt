@@ -15,6 +15,17 @@ export default function Page() {
 				title: categoryTitle,
 			},
 		},
+		{
+			href: '/mobile-modal',
+			title: 'Mobile Modal',
+			description:
+				"We're given an application with a pre-built modal, and asked to make it mobile-responsive.",
+			date: '2023-07-21',
+			category: {
+				href: `${base}`,
+				title: categoryTitle,
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 
 	const mainTitle = 'Media Queries'
