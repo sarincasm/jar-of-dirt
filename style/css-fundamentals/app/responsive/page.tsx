@@ -14,6 +14,17 @@ export default function Page() {
 				title: 'Responsive',
 			},
 		},
+		{
+			href: '/css-variables',
+			title: 'CSS Variables',
+			description:
+				'CSS Variables are incredibly powerful, and unlock lots of really effective workflows.',
+			date: '2023-07-22',
+			category: {
+				href: `${base}`,
+				title: 'Responsive',
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 	const mainTitle = 'Module 5: Responsive & Behavioural CSS'
 	const mainDescription =
