@@ -104,10 +104,10 @@ function renderDone() {
 			</main>
 
 			<div className="fixed inset-0 bg-black/50 flex justify-center items-center">
-				<div className="relative bg-white rounded-lg w-3/5">
-					<header className="p-4">
+				<div className="relative bg-white sm:rounded-lg sm:w-3/5 h-full sm:h-auto w-full">
+					<header className="p-2 pl-4 sm:p-4 flex justify-between items-center border-b sm:border-b-0">
 						<h2 className="text-2xl">Contact Us</h2>
-						<button className="absolute -top-12 right-0 bg-transparent border-none w-12 h-12 cursor-pointer text-white">
+						<button className="flex justify-center items-center sm:absolute sm:-top-12 right-0 bg-transparent border-none w-12 h-12 cursor-pointer sm:text-white">
 							X
 						</button>
 					</header>
