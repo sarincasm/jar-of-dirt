@@ -6,6 +6,7 @@ A repo to house learn-by-coding projects, example/boilerplate code, mini showcas
 
 # .. And Guess What's Inside It
 
+-  [AI](ai/)
 -  [Cloud as Code](cloud-as-code/)
 -  [D3.js](d3/)
 -  [Datastores](datastores/)
