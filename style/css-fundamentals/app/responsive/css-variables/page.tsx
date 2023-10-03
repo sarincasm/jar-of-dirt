@@ -15,6 +15,17 @@ export default function Page() {
 				title: categoryTitle,
 			},
 		},
+		{
+			href: '/dark-mode',
+			title: 'Dark Mode',
+			description:
+				"Let's use CSS variables to create a dark mode variant for this UI!",
+			date: '2023-10-03',
+			category: {
+				href: `${base}`,
+				title: categoryTitle,
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 
 	const mainTitle = 'CSS Variables'
