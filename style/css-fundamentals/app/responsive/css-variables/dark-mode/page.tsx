@@ -29,17 +29,17 @@ function renderStarter() {
 
 function renderDone() {
 	return (
-		<section className="p-8 bg-gray-200">
+		<section className="p-8 bg-gray-200 dark:bg-gray-600">
 			<main>
-				<h1 className="text-2xl font-bold my-3 text-center">
+				<h1 className="text-2xl font-bold my-3 text-center text-black dark:text-white">
 					Artificial Plants
 				</h1>
-				<p className="">
+				<p className="text-black dark:text-white">
 					Artificial plants and flowers bring the vibrance of plants
 					without the work. Shop many varieties and types:
 				</p>
 				<nav>
-					<ul>
+					<ul className="text-black dark:text-white">
 						<li>
 							<a href="/large">Large Plants</a>
 						</li>
@@ -58,7 +58,7 @@ function renderDone() {
 
 export default function Page() {
 	return (
-		<main className="bg-gray-200">
+		<main className="bg-purple-400">
 			<div>
 				<h2 className="text-2xl font-bold my-3 text-center text-white">
 					Starter
