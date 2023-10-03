@@ -26,6 +26,17 @@ export default function Page() {
 				title: categoryTitle,
 			},
 		},
+		{
+			href: '/art-project',
+			title: 'Art Project',
+			description:
+				'Use CSS variables, calc, and linear gradients to come up with a unique work of art',
+			date: '2023-10-03',
+			category: {
+				href: `${base}`,
+				title: categoryTitle,
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 
 	const mainTitle = 'CSS Variables'
