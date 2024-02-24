@@ -25,6 +25,16 @@ export default function Page() {
 				title: 'Responsive',
 			},
 		},
+		{
+			href: '/clamping-values',
+			title: 'Clamping Values',
+			description: 'We have another option: clamp.',
+			date: '2024-02-24',
+			category: {
+				href: `${base}`,
+				title: 'Responsive',
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 	const mainTitle = 'Module 5: Responsive & Behavioural CSS'
 	const mainDescription =
