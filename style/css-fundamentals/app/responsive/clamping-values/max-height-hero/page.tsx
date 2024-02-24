@@ -29,7 +29,7 @@ function renderStarter() {
 function renderDone() {
 	return (
 		<section className="text-white">
-			<div className="h-[80vh] bg-[url('https://courses.joshwcomeau.com/cfj-mats/night-sky.jpg')] bg-cover bg-bottom flex flex-col items-center justify-center text-center">
+			<div className="min-h-[min(80vh,500px)] bg-[url('https://courses.joshwcomeau.com/cfj-mats/night-sky.jpg')] bg-cover bg-bottom flex flex-col items-center justify-center text-center">
 				<h1 className="text-8xl font-bold my-4">Words and Things</h1>
 				<h2 className="text-4xl font-bold">
 					A collection of letters and symbols.
