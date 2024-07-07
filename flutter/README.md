@@ -54,6 +54,14 @@ https://docs.flutter.dev/get-started/install/macos#deploy-to-ios-devices
 open ios/Runner.xcworkspace
 ```
 
+### Building in Release Mode
+
+To be able to launch the app on ios directly, it must be built in release mode.
+
+```
+flutter run --release
+```
+
 ## Useful IDE Tips
 
 VS Code Commands
