@@ -17,7 +17,22 @@ Visit [http://localhost:2000](http://localhost:2000)
 npx create-next-app@latest
 ```
 
+## Setup for Mobile Develoment
+
+### Ngrok
+
+[Initial Setup](https://ngrok.com/docs/getting-started/)
+
+```bash
+ngrok http --domain=domain.ngrok-free.app 2000
+```
+
+### [Setup iOS Device](https://webkit.org/web-inspector/enabling-web-inspector/#ios-device)
+
+### [Setup Android Device](https://developer.chrome.com/docs/devtools/remote-debugging/)
+
 # Useful Resources
 
 -  [Tailwind Playground](https://play.tailwindcss.com/)
 -  [CSS to Tailwind Tool](https://transform.tools/css-to-tailwind)
+-  [Accessible Primitives](https://www.radix-ui.com/)

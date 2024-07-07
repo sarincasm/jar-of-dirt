@@ -21,7 +21,7 @@
     "@types/jest": "^27.4.1",
     "concurrently": "^7.1.0",
     "cors": "^2.8.5",
-    "express": "^4.17.3",
+    "express": "^4.19.2",
     "jest": "^27.5.1",
     "next": "^12.1.5",
     "prettier": "2.6.2",

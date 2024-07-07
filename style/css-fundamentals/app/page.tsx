@@ -30,6 +30,13 @@ const posts: HomePost[] = [
 		href: '/flexbox',
 		title: 'Module 4: Flexbox',
 	},
+	{
+		date: '2023-07-20',
+		datetime: '',
+		imageUrl: '',
+		href: '/responsive',
+		title: 'Module 5: Responsive & Behavioural CSS',
+	},
 ]
 
 export default function Home() {
