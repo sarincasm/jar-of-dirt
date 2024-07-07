@@ -35,6 +35,17 @@ export default function Page() {
 				title: 'Responsive',
 			},
 		},
+		{
+			href: '/scrollburglars',
+			title: 'Scrollburglars',
+			description:
+				'When a webpage has an accidental horizontal scrollbar that allows you to scroll by a few pixels.',
+			date: '2024-07-07',
+			category: {
+				href: `${base}`,
+				title: 'Responsive',
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 	const mainTitle = 'Module 5: Responsive & Behavioural CSS'
 	const mainDescription =
