@@ -47,67 +47,70 @@ function ControlPane({title, options}: ControlPaneProps) {
 
 export default function Page() {
 	return (
-		<div className="bg-green-300">
-			<main className="pt-32 pb-16 bg-green-300 w-full">
-				<div className="fixed bottom-0 bg-green-100 h-2/5 w-full "></div>
+		<div className="bg-green-300 relative">
+			<main className="isolate relative pt-32  bg-green-300 w-full">
+				<div className="z-10 relative">
+					<div className="relative max-w-5xl px-8 mx-auto">
+						<header className="pb-16 w-2/3">
+							<h1 className="text-5xl font-semibold mt-0 mb-4 tracking-tighter">
+								Create your Character
+							</h1>
+							<p className="m-0 text-xl">
+								Customize your character&apos;s look and style using the
+								controls below. What sort of adventure will you embark
+								on?{' '}
+							</p>
+						</header>
 
-				<div className="relative max-w-5xl px-8 mx-auto">
-					<header className="pb-16 w-2/3">
-						<h1 className="text-5xl font-semibold mt-0 mb-4 tracking-tighter">
-							Create your Character
-						</h1>
-						<p className="m-0 text-xl">
-							Customize your character&apos;s look and style using the
-							controls below. What sort of adventure will you embark on?{' '}
-						</p>
-					</header>
+						<div className="w-1/2">
+							<ControlPane
+								title="Bodies"
+								options={bodyOptions}
+								// currentOption={body}
+								// handleSelectOption={setBody}
+							/>
+							<ControlPane
+								title="Heads"
+								options={headOptions}
+								// currentOption={head}
+								// handleSelectOption={setHead}
+							/>
+							<ControlPane
+								title="Faces"
+								options={faceOptions}
+								// currentOption={face}
+								// handleSelectOption={setFace}
+							/>
+							<ControlPane
+								title="Accessories"
+								options={accessoryOptions}
+								// currentOption={accessory}
+								// handleSelectOption={setAccessory}
+							/>
+							<ControlPane
+								title="Skin Color"
+								options={skinColorOptions}
+								// currentOption={skinColor}
+								// handleSelectOption={setSkinColor}
+							/>
+							<ControlPane
+								title="Clothing Color"
+								options={clothesColorOptions}
+								// currentOption={clothesColor}
+								// handleSelectOption={setClothesColor}
+							/>
+						</div>
+					</div>
 
-					<div className="w-1/2">
-						<ControlPane
-							title="Bodies"
-							options={bodyOptions}
-							// currentOption={body}
-							// handleSelectOption={setBody}
-						/>
-						<ControlPane
-							title="Heads"
-							options={headOptions}
-							// currentOption={head}
-							// handleSelectOption={setHead}
-						/>
-						<ControlPane
-							title="Faces"
-							options={faceOptions}
-							// currentOption={face}
-							// handleSelectOption={setFace}
-						/>
-						<ControlPane
-							title="Accessories"
-							options={accessoryOptions}
-							// currentOption={accessory}
-							// handleSelectOption={setAccessory}
-						/>
-						<ControlPane
-							title="Skin Color"
-							options={skinColorOptions}
-							// currentOption={skinColor}
-							// handleSelectOption={setSkinColor}
-						/>
-						<ControlPane
-							title="Clothing Color"
-							options={clothesColorOptions}
-							// currentOption={clothesColor}
-							// handleSelectOption={setClothesColor}
+					<div className="fixed left-[60%] top-[15%] bottom-[15%] min-h-[500px]">
+						<Character
+							skinColor={skinColorOptions[0].color}
+							clothesColor={clothesColorOptions[0].color}
 						/>
 					</div>
 				</div>
 
-				<div className="fixed left-[60%] top-[15%] bottom-[15%] min-h-[500px]">
-					<Character
-						skinColor={skinColorOptions[0].color}
-						clothesColor={clothesColorOptions[0].color}
-					/>
-				</div>
+				<div className="sticky -my-32 bottom-0 bg-green-100 h-[40vh] w-full "></div>
 			</main>
 
 			<footer className="relative p-16 bg-gray-900 text-white text-center">
