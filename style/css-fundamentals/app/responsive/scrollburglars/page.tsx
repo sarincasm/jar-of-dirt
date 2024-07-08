@@ -8,8 +8,19 @@ export default function Page() {
 			href: '/recut',
 			title: 'Recut',
 			description:
-				'Recut is software that helps with video editing, created by Dave Ceddia.Find and fix the scrollburglar, in a way that makes it less likely for the issue to reoccur.',
+				'Recut (video editing software) created by Dave Ceddia. Find and fix the scrollburglar, & prevent the issue from reoccuring.',
 			date: '2024-07-07',
+			category: {
+				href: `${base}`,
+				title: categoryTitle,
+			},
+		},
+		{
+			href: '/blog',
+			title: 'Blog',
+			description:
+				'In addition to removing the horizontal overflow, you must also take care not to break the sticky social icons on desktop.',
+			date: '2024-07-08',
 			category: {
 				href: `${base}`,
 				title: categoryTitle,
