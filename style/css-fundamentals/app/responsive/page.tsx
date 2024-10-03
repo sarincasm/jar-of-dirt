@@ -46,6 +46,16 @@ export default function Page() {
 				title: 'Responsive',
 			},
 		},
+		{
+			href: '/fluid-calculator',
+			title: 'Fluid Calculator',
+			description: 'Our typography smoothly scales with the viewport.',
+			date: '2024-10-03',
+			category: {
+				href: `${base}`,
+				title: 'Responsive',
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 	const mainTitle = 'Module 5: Responsive & Behavioural CSS'
 	const mainDescription =
