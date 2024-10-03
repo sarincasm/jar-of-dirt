@@ -10,7 +10,7 @@ function renderStarter() {
 function renderDone() {
 	return (
 		<section>
-			<h2 className="text-[2rem]">Tweak Me</h2>
+			<h2 className="text-[clamp(1.5rem,8vw-2rem,3rem)]">Tweak Me</h2>
 		</section>
 	)
 }
