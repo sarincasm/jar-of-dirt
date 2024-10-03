@@ -23,7 +23,7 @@ function renderDone() {
 	return (
 		<section>
 			<nav>
-				<ul className="flex gap-4">
+				<ul className="flex gap-[clamp(1rem,12.8vw-2.25rem,5rem)]">
 					<li>
 						<a href="/">News</a>
 					</li>
