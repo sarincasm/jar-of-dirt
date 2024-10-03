@@ -14,6 +14,17 @@ export default function Page() {
 				title: categoryTitle,
 			},
 		},
+		{
+			href: '/fluid-spacing',
+			title: 'Fluid Spacing',
+			description:
+				'Update the code so that the list items grow further apart on larger viewport sizes',
+			date: '2024-10-03',
+			category: {
+				href: `${base}`,
+				title: categoryTitle,
+			},
+		},
 	].map((post) => ({...post, href: base + post.href}))
 
 	const mainTitle = 'Fluid Calculator'
