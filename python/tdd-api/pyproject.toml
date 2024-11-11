@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "tdd-api"
+version = "0.1.0"
+description = ""
+authors = ["sarincasm <eelsweb@gmail.com>"]
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.4"
+uvicorn = "^0.32.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+start = "tdd_api.main:start"
