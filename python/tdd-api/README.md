@@ -14,6 +14,12 @@ poetry install
 poetry run start
 ```
 
+## Test
+
+```bash
+poetry run pytest
+```
+
 ## PostgreSql Container
 
 Create a `.env` file using the `.env.example` as a template.
