@@ -10,6 +10,8 @@ from sqlalchemy import (
     Enum,
     ForeignKey,
     func,
+    Float,
+    DECIMAL,
 )
 from sqlalchemy.dialects.postgresql import UUID
 
@@ -24,7 +26,7 @@ class Category(Base):
     slug = Column(String(120), nullable=False)
     is_active = Column(Boolean, nullable=False)
     level = Column(Integer, nullable=False)
-    parent_id = Column(Integer, nullable=True)
+    parent_id = Column(Integer, ForeignKey("category.id"), nullable=True)
 
     #  alembic cannot auto detect - CheckConstraint & default server values
 
@@ -63,9 +65,67 @@ class Product(Base):
         server_default="oos",
     )
     category_id = Column(Integer, ForeignKey("category.id"), nullable=False)
+    seasonal_id = Column(Integer, ForeignKey("seasonal_event.id"), nullable=True)
 
     __table_args__ = (
         UniqueConstraint("name", name="uq_product_name"),
         UniqueConstraint("slug", name="uq_product_slug"),
         UniqueConstraint("pid", name="uq_product_pid"),
     )
+
+
+class ProductLine(Base):
+    __tablename__ = "product_line"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    price = Column(DECIMAL(5, 2), nullable=False)
+    sku = Column(
+        UUID(as_uuid=True),
+        nullable=False,
+        server_default=text("uuid_generate_v4()"),
+    )
+    stock_qty = Column(Integer, nullable=False, default=0, server_default="0")
+    is_active = Column(Boolean, nullable=False, default=False, server_default="False")
+    order = Column(Integer, nullable=False)
+    weight = Column(
+        Float,
+        nullable=False,
+    )
+    created_at = Column(
+        DateTime, server_default=text("CURRENT_TIMESTAMP"), nullable=False
+    )
+    product_id = Column(Integer, ForeignKey("product.id"), nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint(
+            "order", "product_id", name="uq_product_line_order_product_id"
+        ),
+        UniqueConstraint("sku", name="uq_product_line_sku"),
+    )
+
+
+class ProductImage(Base):
+    __tablename__ = "product_image"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    alternative_text = Column(String(100), nullable=False)
+    url = Column(String(100), nullable=False)
+    order = Column(Integer, nullable=False)
+    product_line_id = Column(Integer, ForeignKey("product_line.id"), nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint(
+            "order", "product_line_id", name="uq_product_image_order_product_line_id"
+        ),
+    )
+
+
+class SeasonalEvent(Base):
+    __tablename__ = "seasonal_event"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    start_date = Column(DateTime, nullable=False)
+    end_date = Column(DateTime, nullable=False)
+    name = Column(String(100), nullable=False)
+
+    __table_args__ = (UniqueConstraint("name", name="uq_seasonal_event_name"),)
