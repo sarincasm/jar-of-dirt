@@ -129,3 +129,77 @@ class SeasonalEvent(Base):
     name = Column(String(100), nullable=False)
 
     __table_args__ = (UniqueConstraint("name", name="uq_seasonal_event_name"),)
+
+
+class Attribute(Base):
+    __tablename__ = "attribute"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    name = Column(String(100), nullable=False)
+    description = Column(String(100), nullable=True)
+
+    __table_args__ = (UniqueConstraint("name", name="uq_attribute_name"),)
+
+
+class ProductType(Base):
+    __tablename__ = "product_type"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    name = Column(String(100), nullable=False)
+    level = Column(
+        Integer,
+        nullable=False,
+    )
+    parent_id = Column(Integer, ForeignKey("product_type.id"), nullable=True)
+
+    __table_args__ = (
+        UniqueConstraint("name", "level", name="uq_product_type_name_level"),
+    )
+
+
+class AttributeValue(Base):
+    __tablename__ = "attribute_value"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    attribute_value = Column(String(100), nullable=False)
+    attribute_id = Column(Integer, ForeignKey("attribute.id"), nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint(
+            "attribute_value", "attribute_id", name="uq_attribute_value_attribute_id"
+        ),
+    )
+
+
+class ProductLineAttributeValue(Base):
+    __tablename__ = "product_line_attribute_value"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    attribute_value_id = Column(
+        Integer, ForeignKey("attribute_value.id"), nullable=False
+    )
+    product_line_id = Column(Integer, ForeignKey("product_line.id"), nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint(
+            "attribute_value_id",
+            "product_line_id",
+            name="uq_product_line_attribute_value",
+        ),
+    )
+
+
+class ProductProductType(Base):
+    __tablename__ = "product_product_type"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    product_type_id = Column(Integer, ForeignKey("product_type.id"), nullable=False)
+    product_id = Column(Integer, ForeignKey("product.id"), nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint(
+            "product_type_id",
+            "product_id",
+            name="uq_product_id_product_type_id",
+        ),
+    )
