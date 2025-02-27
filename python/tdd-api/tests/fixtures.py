@@ -27,6 +27,7 @@ def db_session():
     # cleanup
     container.stop()
     container.remove()
+
     engine.dispose()
 
 

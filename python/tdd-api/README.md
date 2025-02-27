@@ -16,8 +16,22 @@ poetry run start
 
 ## Test
 
+Model tests:
+
 ```bash
-poetry run pytest
+poetry run pytest -m model
+```
+
+Unit tests:
+
+```bash
+poetry run pytest -m unit
+```
+
+Integration tests:
+
+```bash
+poetry run pytest -m integration
 ```
 
 ## PostgreSql Container
