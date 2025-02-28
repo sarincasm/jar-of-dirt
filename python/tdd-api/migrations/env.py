@@ -16,6 +16,11 @@ config.set_section_option("devdb", "sqlalchemy.url", os.environ.get("DEV_DATABAS
 config.set_section_option(
     "testdb", "sqlalchemy.url", os.environ.get("TEST_DATABASE_URL")
 )
+config.set_section_option(
+    "integrationtestdb",
+    "sqlalchemy.url",
+    "postgresql+psycopg2://postgres:postgres@127.0.0.1:5435/inventory",
+)
 
 target_metadata = models.Base.metadata
 

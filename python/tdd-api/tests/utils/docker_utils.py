@@ -28,9 +28,8 @@ def wait_for_stable_status(container, stable_duration=5, interval=1):
     return False
 
 
-def start_database_container():
+def start_database_container(container_name="test-db", port=5434):
     client = docker.from_env()
-    container_name = "test-db"
 
     try:
         existing_container = client.containers.get(container_name)
@@ -45,7 +44,7 @@ def start_database_container():
         "name": container_name,
         "image": "postgres:16.1-alpine3.19",
         "detach": True,
-        "ports": {"5432": "5434"},
+        "ports": {"5432": port},
         "environment": {
             "POSTGRES_USER": "postgres",
             "POSTGRES_PASSWORD": "postgres",

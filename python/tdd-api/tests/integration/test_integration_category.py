@@ -40,6 +40,27 @@ def test_integration_create_new_category_duplicate(client, db_session_integratio
     assert response.status_code == 400
 
 
+def test_integrate_create_new_category_duplicate_slug(client, db_session_integration):
+    # Generate two random categories
+    category1 = get_random_category_dict()
+    category2 = get_random_category_dict()
+
+    # Ensure both categories have the same slug
+    slug = "same-slug"
+    category1["slug"] = slug
+    category2["slug"] = slug
+
+    # Add the first category to the database
+    db_session_integration.add(Category(**category1))
+    db_session_integration.commit()
+
+    # Attempt to add the second category via the API endpoint
+    response = client.post("api/category/", json=category2)
+
+    # Verify that the insertion of the second category fails due to duplicate slug
+    assert response.status_code == 400
+
+
 def test_integration_get_all_categories(client, db_session_integration):
     categories = [get_random_category_dict() for i in range(5)]
 

@@ -13,12 +13,17 @@ from tests.utils.docker_utils import start_database_container
 
 @pytest.fixture(scope="function")
 def db_session_integration():
-    container = start_database_container()
+    container = start_database_container(
+        container_name="integration-test-db", port=5435
+    )
 
-    engine = create_engine(os.getenv("TEST_DATABASE_URL"))
+    DB_URL = "postgresql+psycopg2://postgres:postgres@127.0.0.1:5435/inventory"
+    engine = create_engine(DB_URL)
 
     with engine.begin() as connection:
-        migrate_to_db("migrations", "alembic.ini", connection)
+        migrate_to_db(
+            "migrations", "alembic.ini", connection, section="integrationtestdb"
+        )
 
     SessionLocal = sessionmaker(autocommit=False, autoflush=True, bind=engine)
 

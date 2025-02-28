@@ -34,6 +34,12 @@ Integration tests:
 poetry run pytest -m integration
 ```
 
+## Coverage
+
+```bash
+poetry run pytest --cov=tdd_api --cov-report=html
+```
+
 ## PostgreSql Container
 
 Create a `.env` file using the `.env.example` as a template.
